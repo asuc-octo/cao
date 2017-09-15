@@ -114,8 +114,6 @@ class User < ActiveRecord::Base
   # Pre-populates this user's fields (to the extent possible), with data made
   # available by OmniAuth.
   def apply_omniauth (omniauth)
-    self.skip_confirmation!
-
     # Note that we use string keys (not symbols) for the 'omniauth' hash.
     # This is because depending on where 'apply_omniauth' is called from (from
     # 'from_omniauth' or 'new_with_session'), the hash provided may or may not

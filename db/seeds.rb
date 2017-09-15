@@ -1,6 +1,5 @@
 # Create an administrator
 admin = User.new email: 'admin@test.com', password: 'password'
-admin.skip_confirmation!
 admin.grant :admin
 admin.save!
 
