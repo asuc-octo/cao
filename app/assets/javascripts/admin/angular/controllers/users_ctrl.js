@@ -6,8 +6,10 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
        * Allowed user roles.
        */
       var USER_ROLE_OPTIONS = [
-        { label: 'Admin', value: 'admin', translation_id: 'admin' },
-        { label: 'Moderator', value: 'moderator', translation_id: 'moderator' }
+        { label: 'Admin', value: 'admin'},
+        { label: 'Executive', value: 'executive'},
+        { label: 'CAO', value: 'cao'},
+        { label: 'Senator', value: 'senator'}
       ];
 
       /**
@@ -49,13 +51,6 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
             { data: 'created_at',
               render: function (data, type, row, meta) {
                 return moment(data).format('lll');
-              }
-            },
-            { data: 'confirmed_at',
-              render: function (data, type, row, meta) {
-                return (data)
-                  ? moment(data).format('lll')
-                  : $filter('translate')('Pending');
               }
             },
             // An example of bypassing the data table `row-ops` functionality,
@@ -148,15 +143,6 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
             { name: 'created_at', label: 'Created At', type: 'date' },
             // Filter with a non database mapped column.
             // See also app/controllers/admin/users_controller.rb.
-            {
-              name: 'confirmed?', label: 'Confirmed?', type: 'select',
-              selectizeOptions: {
-                options: [
-                  { label: 'Yes', value: true, translation_id: 'yes' },
-                  { label: 'No', value: false, translation_id: 'no' }
-                ]
-              }
-            },
             // Another filter with a non database mapped column
             {
               name: 'role', label: 'Role', type: 'select',

@@ -77,6 +77,9 @@ gem 'bootstrap-sass', '~> 3.3.0'
 # For Bootstrap compatible Rails form helpers
 gem 'bootstrap_form'
 
+# For bootswatch theme
+gem 'bootswatch-rails'
+
 # For pagination
 gem 'kaminari'
 
