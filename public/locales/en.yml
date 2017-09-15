@@ -38,5 +38,5 @@ disable_3rd_party_sign_in_hint: 'Disable sign in via third party authentication
 disable_users_from_signing_up_hint: 'Users must ask an app administrator to
   create an account for them. Note that 3rd party sign in is also disabled.'
 
-app_name: 'Rails App Starter Kit'
-admin_app_name: 'Rails App Starter Kit - Admin'
+app_name: 'CPO'
+admin_app_name: 'CPO [ADMIN]'
