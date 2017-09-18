@@ -71,7 +71,10 @@ ActiveRecord::Schema.define(version: 20170915021403) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "message"
+    t.string   "meetings_attended"
+    t.string   "current_projects"
+    t.string   "expenditures"
+    t.string   "other"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

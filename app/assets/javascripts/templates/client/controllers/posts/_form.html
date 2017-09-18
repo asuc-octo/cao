@@ -1,21 +1,27 @@
 <!-- Common form for creating/updating a post -->
-<form name="post_form" role="form" novalidate fb-errors="postErrors"
+<form class="form-horizontal" name="post_form" role="form" novalidate fb-errors="postErrors"
       confirm-dirty-form>
 
-  <div class="form-inputs">
-    <fb-field type="text" required="true" ng-model="post.message"></fb-field>
-  </div>
+  <fieldset>
+    <div class="form-inputs">
+      <fb-field type="text" required="true" ng-model="post.meetings_attended"></fb-field>
+      <fb-field type="text" required="true" ng-model="post.other"></fb-field>
+      <fb-field type="text" required="true" ng-model="post.current_projects"></fb-field>
+      <fb-field type="text" required="true" ng-model="post.expenditures"></fb-field>
+    </div>
 
-  <div class="form-actions" ng-if="!post.id">
-    <button class="btn btn-primary" ng-click="actionCreate()"
+    <div class="form-actions" ng-if="!post.id">
+      <button class="btn btn-primary" ng-click="actionCreate()"
             translate="Create Post"></button>
-  </div>
+    </div>
 
-  <div class="form-actions" ng-if="post.id">
-    <button class="btn btn-primary" ng-click="actionUpdate()"
+    <div class="form-actions" ng-if="post.id">
+      <button class="btn btn-primary" ng-click="actionUpdate()"
             translate="Update Post"></button>
-
     <button class="btn btn-danger" ng-click="actionDestroy()"
             translate="Delete Post"></button>
-  </div>
+    </div>
+  </fieldset>
+
+  
 </form>

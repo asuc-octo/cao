@@ -52,7 +52,7 @@ app.config([
           auth: R.requireSignIn(),
           initialData: ['Post', function (Post) {
             // It is good practice to initialize to non-null values
-            return new Post({ message: '' });
+            return new Post({ meetings_attended: '' });
           }]
         }
       })

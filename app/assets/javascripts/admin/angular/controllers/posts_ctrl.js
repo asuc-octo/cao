@@ -26,7 +26,10 @@ angular.module('PostsCtrl', ['I18n', 'Flash', 'Post'])
                 return '<a href="' + postUrl + '">' + data + '</a>';
               }
             },
-            { data: 'message' },
+            { data: 'meetings_attended' },
+            { data: 'current_projects' },
+            { data: 'expenditures' },
+            { data: 'other' },
             { data: 'created_at',
               render: function (data, type, row, meta) {
                 return moment(data).format('lll');
@@ -135,12 +138,15 @@ angular.module('PostsCtrl', ['I18n', 'Flash', 'Post'])
 
         $scope.queryBuilderOptions = {
           columns: [
-            { name: 'message', label: 'Message', type: 'text' },
+            { name: 'meetings_attended', label: 'Meetings Attended', type: 'text' },
+            { name: 'current_projects', label: 'Current Projects', type: 'text' },
+            { name: 'expenditures', label: 'Expenditures', type: 'text' },
+            { name: 'other', label: 'Other', type: 'text' },
             // See `query-builder` for why 'id' column has type 'text'
             { name: 'id', label: 'ID', type: 'text' },
             { name: 'created_at', label: 'Created At', type: 'date' }
           ],
-          initialColumns: ['message', 'id'],
+          initialColumns: ['meetings_attended', 'current_projects', 'expenditures', 'other', 'id'],
           onSubmit: function () {
             $scope.dataTableInstance.ajax.reload();
           }
