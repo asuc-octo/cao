@@ -1,4 +1,28 @@
 Rails.application.routes.draw do
+  get 'reports/index'
+
+  get 'reports/show'
+
+  get 'reports/create'
+
+  get 'reports/edit'
+
+  get 'reports/update'
+
+  get 'reports/destroy'
+
+  get 'reports_controller/index'
+
+  get 'reports_controller/show'
+
+  get 'reports_controller/create'
+
+  get 'reports_controller/edit'
+
+  get 'reports_controller/update'
+
+  get 'reports_controller/destroy'
+
   # The OmniAuth callback routes need to be independent of any dynamic scope
   # (such as the `scope ':locale'` below). See
   # https://github.com/plataformatec/devise/wiki/How-To:-OmniAuth-inside-localized-scope
