@@ -115,7 +115,13 @@ app.config([
       .state('500', {
         url: '/500',
         templateUrl: 'shared/500.html'
+      })
+      .state('sandbox', {
+        url: '/sandbox',
+        templateUrl: 'shared/sandbox.html'
       });
+
+
   }]);
 
 app.run([
