@@ -5,9 +5,10 @@
   <fieldset>
     <div class="form-inputs">
       <fb-field type="text" required="true" ng-model="report.meetings_attended"></fb-field>
-      <fb-field type="text" required="true" ng-model="report.other"></fb-field>
       <fb-field type="text" required="true" ng-model="report.current_projects"></fb-field>
-      <fb-field type="text" required="true" ng-model="report.expenditures"></fb-field
+      <fb-field type="text" required="true" ng-model="report.expenditures"></fb-field>
+      <fb-field type="text" required="true" ng-model="report.due_date"></fb-field>
+      <fb-field type="text" required="true" ng-model="report.other"></fb-field
     </div>
 
     <div class="form-actions" ng-if="!report.id">

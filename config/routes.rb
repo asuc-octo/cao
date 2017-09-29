@@ -1,27 +1,4 @@
 Rails.application.routes.draw do
-  get 'reports/index'
-
-  get 'reports/show'
-
-  get 'reports/create'
-
-  get 'reports/edit'
-
-  get 'reports/update'
-
-  get 'reports/destroy'
-
-  get 'reports_controller/index'
-
-  get 'reports_controller/show'
-
-  get 'reports_controller/create'
-
-  get 'reports_controller/edit'
-
-  get 'reports_controller/update'
-
-  get 'reports_controller/destroy'
 
   # The OmniAuth callback routes need to be independent of any dynamic scope
   # (such as the `scope ':locale'` below). See
@@ -72,6 +49,8 @@ Rails.application.routes.draw do
 
     resources :posts
 
+    resources :reports
+
     resources :attachments do
       collection do
         post 'batch_destroy'
@@ -91,6 +70,12 @@ Rails.application.routes.draw do
   namespace :admin do
     scope '(:locale)', locale: /#{I18nUtils.admin_avail_locales.join('|')}/ do
       resources :posts, only: [:index, :destroy] do
+        collection do
+          post 'batch_destroy'
+        end
+      end
+
+      resources :reports, only: [:index, :destroy] do
         collection do
           post 'batch_destroy'
         end

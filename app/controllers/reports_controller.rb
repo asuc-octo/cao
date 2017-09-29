@@ -48,7 +48,7 @@ class ReportsController < ApplicationController
   private
 
   def report_params
-    params.require(:report).permit(:meetings_attended, :current_projects, :expenditures, :other)
+    params.permit(:meetings_attended, :current_projects, :expenditures, :due_date, :other)
   end
 
   def load_basics
