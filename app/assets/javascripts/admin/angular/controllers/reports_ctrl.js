@@ -18,7 +18,7 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
           columns: [
             { data: 'id',
               render: function (data, type, row, meta) {
-                var reporturl = I18n.l('/:locale/reports/' + data);
+                var reportUrl = I18n.l('/:locale/reports/' + data);
 
                 return '<a href="' + reportUrl + '">' + data + '</a>';
               }
