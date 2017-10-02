@@ -7,15 +7,15 @@ angular.module('PostsCtrl', ['I18n', 'Flash', 'Post'])
        */
       $scope.actionIndex = function () {
         $scope.dataTableOptions = {
-          serverSide: true,
-          ajax: {
-            url: I18n.l('/admin/:locale/posts.json'),
-            // Just add the query builder filters to all AJAX requests sent by
-            // the data table!
-            data: function (d) {
-              d.filters = $scope.queryBuilderFilters;
-            }
-          },
+          // serverSide: true,
+          // ajax: {
+          //   url: I18n.l('/admin/:locale/posts.json'),
+          //   // Just add the query builder filters to all AJAX requests sent by
+          //   // the data table!
+          //   data: function (d) {
+          //     d.filters = $scope.queryBuilderFilters;
+          //   }
+          // },
           searching: false, // Since we are using query builder
           processing: true, // Show the 'processing' indicator
           columns: [
