@@ -30,6 +30,7 @@ angular.module('PostsCtrl', ['I18n', 'Flash', 'Post'])
             { data: 'current_projects' },
             { data: 'expenditures' },
             { data: 'other' },
+            { data: 'user_id'}
             { data: 'created_at',
               render: function (data, type, row, meta) {
                 return moment(data).format('lll');
@@ -138,6 +139,7 @@ angular.module('PostsCtrl', ['I18n', 'Flash', 'Post'])
 
         $scope.queryBuilderOptions = {
           columns: [
+            { name: 'user_id', label: 'User ID', type: 'text' },
             { name: 'meetings_attended', label: 'Meetings Attended', type: 'text' },
             { name: 'current_projects', label: 'Current Projects', type: 'text' },
             { name: 'expenditures', label: 'Expenditures', type: 'text' },
@@ -146,7 +148,7 @@ angular.module('PostsCtrl', ['I18n', 'Flash', 'Post'])
             { name: 'id', label: 'ID', type: 'text' },
             { name: 'created_at', label: 'Created At', type: 'date' }
           ],
-          initialColumns: ['meetings_attended', 'current_projects', 'expenditures', 'other', 'id'],
+          initialColumns: ['meetings_attended', 'user_id', 'current_projects', 'expenditures', 'other', 'id'],
           onSubmit: function () {
             $scope.dataTableInstance.ajax.reload();
           }
