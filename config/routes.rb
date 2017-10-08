@@ -48,6 +48,10 @@ Rails.application.routes.draw do
 
     resources :posts
 
+    resources :reports
+
+    resources :due_dates
+
     resources :attachments do
       collection do
         post 'batch_destroy'
