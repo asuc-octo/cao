@@ -22,7 +22,18 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'User'])
         };
 
         $scope.actionIndex = function () {
-
+            $scope.queryBuilderOptions = {
+              columns: [
+                {
+                  name: 'role', label: 'Role', type: 'select',
+                  selectizeOptions: USER_ROLE_SELECTIZE_OPTIONS
+                }
+              ],
+              initialColumns: ['role'],
+              onSubmit: function () {
+                $scope.dataTableInstance.ajax.reload();
+              }
+            };
         }
 
     }]);
