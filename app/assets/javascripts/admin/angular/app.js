@@ -20,6 +20,7 @@ var app = angular.module('App', [
   'AppSettingsCtrl',
   'PostsCtrl',
   'UsersCtrl',
+  'DueDatesCtrl',
 
   // Directives
   'ngTranscludeReplace',

@@ -163,7 +163,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
         $scope.deleteUser = function (userId) {
           I18n.confirm('Really delete user #' + userId + '?',
             'really_delete_user_id', { id: userId }).then(function () {
-            
+
             $scope.pleaseWaitSvc.request();
             // When performing an operation on a single row, unselect all rows
             // to avoid any ambiguity about the scope of the operation.

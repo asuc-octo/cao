@@ -110,6 +110,18 @@ app.config([
         }
       })
 
+      // Due Dates routes
+      .state('app.due_dates', {
+        abstract: true,
+        url: '/due_dates',
+        template: '<div ui-view></div>'
+      })
+      .state('app.due_dates.index', {
+        url: '',
+        templateUrl: 'admin/controllers/due_dates/index.html',
+        controller: 'DueDatesCtrl'
+      })
+
       // Error routes
       .state('401', {
         url: '/401',
