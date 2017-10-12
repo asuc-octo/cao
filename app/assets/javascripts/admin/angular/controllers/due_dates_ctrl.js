@@ -6,10 +6,10 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'User'])
          * Allowed user roles.
          */
         var USER_ROLE_OPTIONS = [
-          { label: 'Admin', value: 1},
-          { label: 'Executive', value: 2},
-          { label: 'CAO', value: 3},
-          { label: 'Senator', value: 4}
+          { label: 'Admin', value: "admin"},
+          { label: 'Executive', value: "executive"},
+          { label: 'CAO', value: "cao"},
+          { label: 'Senator', value: "senator"}
         ];
 
         /**
@@ -22,6 +22,19 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'User'])
         };
 
         $scope.actionIndex = function () {
+            $scope.queryBuilderOptions = {
+              columns: [
+                {
+                  name: 'role', label: 'Role', type: 'select',
+                  selectizeOptions: USER_ROLE_SELECTIZE_OPTIONS
+                }
+              ],
+              initialColumns: ['role'],
+              onSubmit: function () {
+                $scope.dataTableInstance.ajax.reload();
+              }
+            };
+            
             $scope.dataTableOptions = {
               serverSide: true,
               ajax: {
@@ -36,8 +49,8 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'User'])
               processing: true, // Show the 'processing' indicator
               columns: [
                 { data: 'id' },
-                { data: 'email' },
-                { data: 'roles',
+                { data: 'due_date' },
+                { data: 'role_id',
                   searchable: false, orderable: false,
                   render: function (data, type, row, meta) {
                     return _.map(data, function (role) {
@@ -126,19 +139,6 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'User'])
             //     }
             //   }
             // };
-
-            $scope.queryBuilderOptions = {
-              columns: [
-                {
-                  name: 'role', label: 'Role', type: 'select',
-                  selectizeOptions: USER_ROLE_SELECTIZE_OPTIONS
-                }
-              ],
-              initialColumns: ['role'],
-              onSubmit: function () {
-                $scope.dataTableInstance.ajax.reload();
-              }
-            };
         }
 
     }]);
