@@ -13,6 +13,7 @@ var app = angular.module('App', [
   'AuthSvc',
   'Post',
   'User',
+  'DueDate',
 
   // Controllers
   'AppCtrl',

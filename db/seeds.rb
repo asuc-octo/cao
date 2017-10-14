@@ -1,4 +1,4 @@
-# Delete everything 
+# Delete everything
 User.destroy_all
 DueDate.destroy_all
 

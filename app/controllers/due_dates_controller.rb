@@ -1,5 +1,5 @@
 class DueDatesController < ApplicationController
-	respond_to :json
+    respond_to :json
 
 	before_action :load_basics, except: [:index, :create]
 
@@ -8,15 +8,16 @@ class DueDatesController < ApplicationController
   after_action :verify_authorized
 
   def index
+    authorize @due_dates
+
     @due_dates = policy_scope(DueDate).all
 
-  	authorize @due_dates
+    @metadata = PaginationMetadata.new(@due_dates, params[:page], params[:per])
 
-    # @metadata = PaginationMetadata.new(@due_dates, params[:page], params[:per])
-
-    # @due_dates = @due_dates.page(@metadata.page).per(@metadata.per)
+    @due_dates = @due_dates.page(@metadata.page).per(@metadata.per)
 
     respond_with @due_dates
+    
   end
 
   def show
