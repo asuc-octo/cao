@@ -5,17 +5,13 @@
                    filters="queryBuilderFilters"></query-builder>
 
     <table id="due-dates-table"
-           datatable options="dataTableOptions" instance="dataTableInstance"
-           selected-rows="dataTableSelectedRows" bulk-ops="dataTableBulkOps"
-           class="display no-wrap" width="100%">
+           datatable options="dataTableOptions" instance="dataTableInstance" row-ops="dataTableRowOps" selected-rows="dataTableSelectedRows" bulk-ops="dataTableBulkOps" class="display no-wrap" width="100%">
 
       <thead>
       <tr>
         <th>ID</th>
         <th>Due Date</th>
         <th>Role ID</th>
-        <th class="dt-head-center"
-            translation-id="data_table.columns.actions">Actions</th>
       </tr>
       </thead>
     </table>
