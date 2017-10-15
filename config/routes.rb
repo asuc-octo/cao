@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # The OmniAuth callback routes need to be independent of any dynamic scope
   # (such as the `scope ':locale'` below). See
   # https://github.com/plataformatec/devise/wiki/How-To:-OmniAuth-inside-localized-scope
@@ -71,6 +72,12 @@ Rails.application.routes.draw do
   namespace :admin do
     scope '(:locale)', locale: /#{I18nUtils.admin_avail_locales.join('|')}/ do
       resources :posts, only: [:index, :destroy] do
+        collection do
+          post 'batch_destroy'
+        end
+      end
+
+      resources :reports, only: [:index, :destroy] do
         collection do
           post 'batch_destroy'
         end
