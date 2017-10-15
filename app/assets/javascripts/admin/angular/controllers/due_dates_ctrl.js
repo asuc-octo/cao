@@ -1,7 +1,7 @@
-angular.module('DueDatesCtrl', ['I18n', 'Flash', 'User'])
+angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
   .controller('DueDatesCtrl', [
-    '$scope',
-    function($scope) {
+    '$scope', 'I18n', 'Flash', 'DueDate',
+    function($scope, I18n, Flash, DueDate) {
         /**
          * Allowed user roles.
          */
@@ -22,19 +22,6 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'User'])
         };
 
         $scope.actionIndex = function () {
-            // Select a role to view its associated due dates
-            $scope.queryBuilderOptions = {
-              columns: [
-                {
-                  name: 'role', label: 'Role', type: 'select',
-                  selectizeOptions: USER_ROLE_SELECTIZE_OPTIONS
-                }
-              ],
-              initialColumns: ['role'],
-              onSubmit: function () {
-                $scope.dataTableInstance.ajax.reload();
-              }
-            };
 
             $scope.dataTableOptions = {
               serverSide: true,
@@ -73,13 +60,13 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'User'])
               edit: {
                 icon: 'glyphicon-pencil',
                 link: function (rowId) {
-                  return I18n.l('/:locale/posts/' + rowId + '/edit');
+                  return I18n.l('/:locale/due_dates/' + rowId + '/edit');
                 }
               },
               delete: {
                 icon: 'glyphicon-remove',
                 action: function (rowId) {
-                  I18n.confirm('Really delete post #' + rowId + '?',
+                  I18n.confirm('Really delete due date #' + rowId + '?',
                     'really_delete_post_id', { id: rowId }
                   ).then(function () {
                     $scope.pleaseWaitSvc.request();
@@ -87,10 +74,10 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'User'])
                     // rows to avoid any ambiguity about the scope of the operation.
                     $scope.dataTableSelectedRows.length = 0;
 
-                    Post.remove({ postId: rowId }, null,
+                    DueDate.remove({ postId: rowId }, null,
                       function (response) {
                         $scope.pleaseWaitSvc.release();
-                        Flash.now.push('success', 'Post deleted.', 'post_deleted');
+                        Flash.now.push('success', 'Due date deleted.', 'post_deleted');
 
                         $scope.dataTableInstance.ajax.reload();
                       }, function (failureResponse) {
@@ -101,7 +88,7 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'User'])
                           // don't need to provide a translation id.
                           Flash.now.push('danger', failureResponse.data.error);
                         } else {
-                          Flash.now.push('danger', 'Error deleting post.',
+                          Flash.now.push('danger', 'Error deleting due date.',
                             'error_deleting_post');
                         }
                       });
@@ -146,6 +133,19 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'User'])
                       });
                   });
                 }
+              }
+            };
+            // Select a role to view its associated due dates
+            $scope.queryBuilderOptions = {
+              columns: [
+                {
+                  name: 'role', label: 'Role', type: 'select',
+                  selectizeOptions: USER_ROLE_SELECTIZE_OPTIONS
+                }
+              ],
+              initialColumns: ['role'],
+              onSubmit: function () {
+                $scope.dataTableInstance.ajax.reload();
               }
             };
         }
