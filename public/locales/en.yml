@@ -3,10 +3,7 @@
 forms:
   post_form:
     hints:
-      meetings_attended: 'Minimum 10, maximum 140 characters'
-      current_projects: 'Minimum 10, maximum 140 characters'
-      expenditures: 'Minimum 10, maximum 140 characters'
-      other: 'Minimum 10, maximum 140 characters'
+      message: 'Minimum 10, maximum 140 characters'
   app_settings_outgoing_email_form:
     labels:
       sender: 'From address'

@@ -2,9 +2,5 @@
 
 FactoryGirl.define do
   factory :report do
-    meetings_attended "MyText"
-    current_projects "MyText"
-    expenditures "MyText"
-    other "MyText"
   end
 end

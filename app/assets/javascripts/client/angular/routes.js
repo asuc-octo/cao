@@ -52,7 +52,7 @@ app.config([
           auth: R.requireSignIn(),
           initialData: ['Post', function (Post) {
             // It is good practice to initialize to non-null values
-            return new Post({ meetings_attended: '' });
+            return new Post({ message: '' });
           }]
         }
       })
@@ -75,56 +75,6 @@ app.config([
           auth2: R.requireServerAuth('/:locale/posts/:id/edit.json'),
           initialData: ['$stateParams', 'Post', function ($stateParams, Post) {
             return Post.edit({ postId: $stateParams.id }).$promise;
-          }]
-        }
-      })
-
-
-      // Report routes
-      .state('app.reports', {
-        abstract: true,
-        url: '/reports',
-        template: '<div ui-view></div>',
-        resolve: {
-          initialData: angular.noop
-        }
-      })
-      .state('app.reports.index', {
-        url: '',
-        templateUrl: 'client/controllers/reports/index.html',
-        controller: 'ReportsCtrl'
-      })
-      .state('app.reports.new', {
-        url: '/new',
-        templateUrl: 'client/controllers/reports/new.html',
-        controller: 'ReportsCtrl',
-        resolve: {
-          auth: R.requireSignIn(),
-          initialData: ['Report', function (Report) {
-            // It is good practice to initialize to non-null values
-            return new Report({ meetings_attended: '' });
-          }]
-        }
-      })
-      .state('app.reports.show', {
-        url: '/:id',
-        templateUrl: 'client/controllers/reports/show.html',
-        controller: 'ReportsCtrl',
-        resolve: {
-          initialData: ['$stateParams', 'Report', function ($stateParams, Report) {
-            return Report.get({ reportId: $stateParams.id }).$promise;
-          }]
-        }
-      })
-      .state('app.reports.edit', {
-        url: '/:id/edit',
-        templateUrl: 'client/controllers/reports/edit.html',
-        controller: 'ReportsCtrl',
-        resolve: {
-          auth: R.requireSignIn(),
-          auth2: R.requireServerAuth('/:locale/reports/:id/edit.json'),
-          initialData: ['$stateParams', 'Report', function ($stateParams, Report) {
-            return Report.edit({ reportId: $stateParams.id }).$promise;
           }]
         }
       })

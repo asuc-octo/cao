@@ -16,13 +16,11 @@ var app = angular.module('App', [
   'Flash',
   'AuthSvc',
   'Post',
-  'Report',
 
   // Controllers
   'AppCtrl',
   'HomeCtrl',
   'PostsCtrl',
-  'ReportsCtrl',
   'AttachmentsCtrl',
 
   // Directives
