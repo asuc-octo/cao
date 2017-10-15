@@ -1,4 +1,4 @@
-# Authorization policy for reports controller actions.
+# Authorization policy for report controller actions.
 class ReportPolicy < ApplicationPolicy
   def index?
     true

@@ -76,14 +76,13 @@ ActiveRecord::Schema.define(version: 20171005024638) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "meetings_attended"
-    t.string   "current_projects"
-    t.string   "expenditures"
-    t.string   "other"
+    t.string   "message"
     t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.text     "meetings_attended"

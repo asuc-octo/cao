@@ -59,10 +59,7 @@ query_builder:
     created_at: '@:Created At'
     email: '@:Email'
     id: '@:ID'
-    meetings_attended: '@:meetings_attended'
-    current_projects: '@:current_projects'
-    expenditures: '@:expenditures'
-    other: '@:other'
+    message: '@:Message'
     name: '@:Name'
     role: '@:Role'
     joins_count: '@:# Usages'
@@ -84,10 +81,7 @@ forms:
       name: 'नाम अनुमानित करने के लिए खाली छोड़ दें'
   post_form:
     labels:
-      meetings_attended: '@:meetings_attended'
-      current_projects: '@:current_projects'
-      expenditures: '@:expenditures'
-      other: '@:other'
+      message: '@:Message'
     hints:
       message: 'न्यूनतम 10, अधिकतम 140 वर्ण'
   admin_edit_user_form:
@@ -119,19 +113,7 @@ posts-table:
   columns:
     created_at: '@:Created At'
     id: '@:ID'
-    meetings_attended: '@:meetings_attended'
-    current_projects: '@:current_projects'
-    expenditures: '@:expenditures'
-    other: '@:other'
-
-reports-table:
-  columns:
-    created_at: '@:Created At'
-    id: '@:ID'
-    meetings_attended: '@:meetings_attended'
-    current_projects: '@:current_projects'
-    expenditures: '@:expenditures'
-    other: '@:other'
+    message: '@:Message'
 
 users-table:
   columns:
@@ -139,10 +121,7 @@ users-table:
     created_at: '@:Created At'
     email: '@:Email'
     id: '@:ID'
-    meetings_attended: '@:meetings_attended'
-    current_projects: '@:current_projects'
-    expenditures: '@:expenditures'
-    other: '@:other'
+    message: '@:Message'
     roles: '@:Roles'
 
 # PostsCtrl flash messages
@@ -178,7 +157,7 @@ disable_3rd_party_sign_in_hint: 'Facebook, Google जैसी थर्ड प�
 disable_users_from_signing_up_hint: 'यूज़र को अकाउंट बनाने के लिए प्रशासक से संपर्क करना होगा।
   ध्यान दें की थर्ड पार्टी साइन इन बे निर्योग हो जाएगा।'
 
-app_name: 'CPO'
+app_name: 'Rails App Starter Kit'
 admin_app_name: 'Rails App Starter Kit - प्रशासन'
 
 admin: 'प्रशासक'

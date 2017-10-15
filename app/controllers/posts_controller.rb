@@ -72,10 +72,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.required(:post).permit(:meetings_attended)
-    params.required(:post).permit(:current_projects)
-    params.required(:post).permit(:expenditures)
-    params.required(:post).permit(:other)
+    params.required(:post).permit(:message)
   end
 
   def load_basics

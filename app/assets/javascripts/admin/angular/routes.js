@@ -42,18 +42,6 @@ app.config([
         controller: 'PostsCtrl'
       })
 
-      // Report routes
-      .state('app.reports', {
-        abstract: true,
-        url: '/reports',
-        template: '<div ui-view></div>'
-      })
-      .state('app.reports.index', {
-        url: '',
-        templateUrl: 'admin/controllers/reports/index.html',
-        controller: 'ReportsCtrl'
-      })
-
       // User routes
       .state('app.users', {
         abstract: true,
