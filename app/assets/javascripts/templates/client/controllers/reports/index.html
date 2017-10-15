@@ -1,0 +1,11 @@
+<div ng-init="actionIndex()">
+  <h2 translate="Reports" translate-default="Reports"></h2>
+
+  <ul class="reports">
+    <li class="post-item" ng-repeat="report in reports">
+      <a ui-sref="app.reports.show({ id: report.id })">{{report.meetings_attended}}</a>
+    </li>
+  </ul>
+
+  <a ui-sref="app.reports.new" class="btn btn-primary" translate="New Report"></a>
+</div>

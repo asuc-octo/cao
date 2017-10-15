@@ -1,4 +1,3 @@
-/*
  * A directive for jQuery DataTables.
  * See http://datatables.net/.
  * Note the slight aberration in the name of the directive. Ideally, it should
