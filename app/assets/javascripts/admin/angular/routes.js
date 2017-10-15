@@ -121,6 +121,21 @@ app.config([
         templateUrl: 'admin/controllers/due_dates/index.html',
         controller: 'DueDatesCtrl'
       })
+      .state('app.due_dates.new', {
+        url: '/new',
+        templateUrl: 'admin/controllers/due_dates/new.html',
+        controller: 'DueDatesCtrl',
+        resolve: {
+          initialData: ['DueDate', function (User) {
+            return new DueDate({
+              // It is good practice to initialize to non-null values
+              due_date: '',
+              role_id: '',
+              password_confirmation: ''
+            })
+          }]
+        }
+      })
 
       // Error routes
       .state('401', {
