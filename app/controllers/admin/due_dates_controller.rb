@@ -3,6 +3,8 @@ class Admin::DueDatesController < Admin::ApplicationController
 
     respond_to :json
 
+
+    before_action :load_basics, only: [:edit, :update, :destroy]
     after_action :verify_authorized
 
     def index
@@ -15,6 +17,15 @@ class Admin::DueDatesController < Admin::ApplicationController
       respond_with @due_dates_adapter
     end
 
+    def create
+      @due_date = DueDate.new(due_date_params)
+      authorize @due_date
+
+      @due_date.save
+
+      respond_with @due_date, location: admin_due_dates_url
+    end
+
     def destroy
       @due_date = DueDate.find(params[:id])
       authorize @due_date
@@ -23,4 +34,14 @@ class Admin::DueDatesController < Admin::ApplicationController
 
       respond_with @due_date
     end
-  end
+
+    private
+
+    def due_date_params
+      params.required(:due_date).permit(:role_id, :due_date)
+    end
+
+    def load_basics
+      @due_date = DueDate.find(params[:id])
+    end
+end

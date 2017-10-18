@@ -1,7 +1,7 @@
 angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
   .controller('DueDatesCtrl', [
-    '$scope', 'I18n', 'Flash', 'DueDate',
-    function($scope, I18n, Flash, DueDate) {
+    '$scope', '$state', 'I18n', 'Flash', 'DueDate', 'initialData',
+    function($scope, $state, I18n, Flash, DueDate, initialData) {
         /**
          * Allowed user roles.
          */
@@ -148,6 +148,38 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
                 $scope.dataTableInstance.ajax.reload();
               }
             };
-        }
+        };
+
+        /**
+         * The 'new' action.
+         * Builds an empty due date for the form.
+         */
+        $scope.actionNew = function () {
+
+          $scope.due_date = initialData
+          console.log($scope.due_date)
+          $scope.userRoleSelectizeOptions = USER_ROLE_SELECTIZE_OPTIONS;
+        };
+
+        /**
+         * The 'create' action.
+         * If there are validation errors on the server side, then populates the
+         * `userErrors` scope variable with these errors.
+         */
+        $scope.actionCreate = function () {
+          $scope.pleaseWaitSvc.request();
+
+          $scope.due_date.$save(function (response) {
+            $scope.pleaseWaitSvc.release();
+            Flash.push('success', 'Due date created.');
+
+            $scope.navConfirmationSvc.setConfirmNav(false);
+            $state.go('app.due_dates.index');
+          }, function (failureResponse) {
+            $scope.pleaseWaitSvc.release();
+            $scope.dueDateErrors = failureResponse.data.errors;
+          });
+        };
+
 
     }]);

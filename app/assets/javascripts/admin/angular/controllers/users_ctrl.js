@@ -197,7 +197,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
        */
       $scope.actionNew = function () {
         $scope.user = initialData;
-
+        console.log($scope.user)
         $scope.userRoleSelectizeOptions = USER_ROLE_SELECTIZE_OPTIONS;
       };
 

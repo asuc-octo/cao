@@ -114,7 +114,10 @@ app.config([
       .state('app.due_dates', {
         abstract: true,
         url: '/due_dates',
-        template: '<div ui-view></div>'
+        template: '<div ui-view></div>',
+        resolve: {
+          initialData: angular.noop
+        }
       })
       .state('app.due_dates.index', {
         url: '',
@@ -126,13 +129,8 @@ app.config([
         templateUrl: 'admin/controllers/due_dates/new.html',
         controller: 'DueDatesCtrl',
         resolve: {
-          initialData: ['DueDate', function (User) {
-            return new DueDate({
-              // It is good practice to initialize to non-null values
-              due_date: '',
-              role_id: '',
-              password_confirmation: ''
-            })
+          initialData: ['DueDate', function (DueDate) {
+            return new DueDate({ due_date: '', role_id: '' });
           }]
         }
       })
