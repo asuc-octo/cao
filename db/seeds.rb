@@ -11,7 +11,7 @@ admin.save!
 dueDate = DueDate.create! role_id: 1, due_date: DateTime.now
 
 # Create a post on behalf of the administrator
-admin.posts.create! message: 'Seeded post from the seeded administrator.'
+# admin.posts.create! message: 'Seeded post from the seeded administrator.'
 
 
 # Create a report on behalf of the administrator
