@@ -21,13 +21,19 @@ class Admin::DueDatesController < Admin::ApplicationController
       @due_date = DueDate.new(due_date_params)
       authorize @due_date
 
+      if (roles = params[:due_date][:role_id])
+        roles.each { |role|
+            @due_date.role_id = role
+        }
+      end
+
       @due_date.save
 
       respond_with @due_date, location: admin_due_dates_url
     end
 
     def destroy
-      @due_date = DueDate.find(params[:id])
+
       authorize @due_date
 
       @due_date.destroy
@@ -38,7 +44,7 @@ class Admin::DueDatesController < Admin::ApplicationController
     private
 
     def due_date_params
-      params.required(:due_date).permit(:role_id, :due_date)
+      params.required(:due_date).permit(:deadline, :role_id)
     end
 
     def load_basics

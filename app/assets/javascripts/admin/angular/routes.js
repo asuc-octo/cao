@@ -130,7 +130,7 @@ app.config([
         controller: 'DueDatesCtrl',
         resolve: {
           initialData: ['DueDate', function (DueDate) {
-            return new DueDate({ due_date: '', role_id: '' });
+            return new DueDate({ deadline: '', role_id: '' });
           }]
         }
       })
