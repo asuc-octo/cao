@@ -6,10 +6,10 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
          * Allowed user roles.
          */
         var USER_ROLE_OPTIONS = [
-          { label: 'Admin', value: "1"},
-          { label: 'Executive', value: "2"},
-          { label: 'CAO', value: "3"},
-          { label: 'Senator', value: "4"}
+          { label: 'Admin', value: 1},
+          { label: 'Executive', value: 2},
+          { label: 'CAO', value: 3},
+          { label: 'Senator', value: 4}
         ];
 
         /**
@@ -37,7 +37,7 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
               processing: true, // Show the 'processing' indicator
               columns: [
                 { data: 'id' },
-                { data: 'due_date' },
+                { data: 'deadline' },
                 { data: 'role_id' }
               ],
               stateSave: true, // Ensure table element has an id for this to work!
@@ -74,7 +74,7 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
                     // rows to avoid any ambiguity about the scope of the operation.
                     $scope.dataTableSelectedRows.length = 0;
 
-                    DueDate.remove({ postId: rowId }, null,
+                    DueDate.remove({ dueDateId: rowId }, null,
                       function (response) {
                         $scope.pleaseWaitSvc.release();
                         Flash.now.push('success', 'Due date deleted.', 'post_deleted');
@@ -110,7 +110,7 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
 
                     $scope.pleaseWaitSvc.request();
 
-                    User.batch_destroy({}, { ids: $scope.dataTableSelectedRows },
+                    DueDate.batch_destroy({}, { ids: $scope.dataTableSelectedRows },
                       function (response) {
                         $scope.pleaseWaitSvc.release();
                         Flash.now.push('success', 'Due dates deleted.',
@@ -156,8 +156,8 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
          */
         $scope.actionNew = function () {
 
-          $scope.due_date = initialData
-          console.log($scope.due_date)
+          $scope.due_date = initialData;
+          console.log($scope.due_date);
           $scope.userRoleSelectizeOptions = USER_ROLE_SELECTIZE_OPTIONS;
         };
 
@@ -167,6 +167,9 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
          * `userErrors` scope variable with these errors.
          */
         $scope.actionCreate = function () {
+          $scope.due_date.deadline = new Date($scope.due_date.deadline);
+          console.log($scope.due_date);
+          console.log(typeof $scope.due_date);
           $scope.pleaseWaitSvc.request();
 
           $scope.due_date.$save(function (response) {
