@@ -1,8 +1,8 @@
-angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report', 'AttachmentLibrarySvc'])
+angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc'])
   .controller('ReportsCtrl', [
-    '$scope', '$state', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc',
+    '$scope', 'AuthSvc', '$state', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc',
     'initialData',
-    function ($scope, $state, I18n, Flash, Report, AttachmentLibrarySvc,
+    function ($scope, $state, AuthSvc, I18n, Flash, Report, AttachmentLibrarySvc,
               initialData) {
       
       /**
@@ -52,6 +52,8 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report', 'AttachmentLibrarySvc'
        */
       $scope.actionNew = function () {
         $scope.report = initialData;
+        $scope.currentUser = $scope.authSvc.currentUser();
+        console.log($scope.currentUser);
       };
 
       /**
