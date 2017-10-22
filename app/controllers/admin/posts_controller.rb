@@ -9,8 +9,6 @@ class Admin::PostsController < Admin::ApplicationController
     authorize Post
 
     posts_filter = QueryBuilder.new(Post, params[:filters])
-    puts("\n\n\nHEY\n\n\n")
-    puts(params)
 
     @posts_adapter = DataTableAdapter.new(Post, params, posts_filter.query)
 
