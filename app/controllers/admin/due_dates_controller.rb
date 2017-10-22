@@ -18,16 +18,15 @@ class Admin::DueDatesController < Admin::ApplicationController
     end
 
     def create
-      @due_date = DueDate.new(due_date_params)
-      authorize @due_date
 
       if (roles = params[:due_date][:role_id])
         roles.each { |role|
+            @due_date = DueDate.new(due_date_params)
+            authorize @due_date
             @due_date.role_id = role
+            @due_date.save
         }
       end
-
-      @due_date.save
 
       respond_with @due_date, location: admin_due_dates_url
     end
