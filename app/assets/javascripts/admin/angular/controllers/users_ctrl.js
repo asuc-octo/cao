@@ -86,9 +86,11 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
           // Save/load the query builder state along with the table state
           stateSaveParams: function (settings, data) {
             data.filters = $scope.queryBuilderFilters;
+            console.log(data.filters);
           },
           stateLoadParams: function (settings, data) {
             $scope.queryBuilderFilters = data.filters;
+            console.log($scope.queryBuilderFilters);
           }
         };
 

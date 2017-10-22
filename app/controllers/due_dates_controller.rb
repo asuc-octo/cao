@@ -17,7 +17,7 @@ class DueDatesController < ApplicationController
     @due_dates = @due_dates.page(@metadata.page).per(@metadata.per)
 
     respond_with @due_dates
-    
+
   end
 
   def show

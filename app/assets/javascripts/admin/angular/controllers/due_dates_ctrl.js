@@ -37,8 +37,12 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
               processing: true, // Show the 'processing' indicator
               columns: [
                 { data: 'id' },
-                { data: 'deadline' },
-                { data: 'role_id' }
+                { data: 'deadline',
+                  render: function (data, type, row, meta) {
+                    return moment(data).format('lll');
+                  }
+                },
+                { data: 'role_id' },
               ],
               stateSave: true, // Ensure table element has an id for this to work!
               // Save/load the query builder state along with the table state
