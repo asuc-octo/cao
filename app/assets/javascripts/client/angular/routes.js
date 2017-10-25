@@ -79,6 +79,21 @@ app.config([
         }
       })
 
+      // Punctuality routes
+      .state('app.punctuality', {
+        abstract: true,
+        url: '/punctuality',
+        template: '<div ui-view></div>',
+        resolve: {
+          initialData: angular.noop
+        }
+      })
+      .state('app.punctuality.index', {
+        url: '',
+        templateUrl: 'client/controllers/punctuality/index.html',
+        controller: 'PunctualityCtrl'
+      })
+
       // Attachment routes
       .state('app.attachments', {
         abstract: true,
