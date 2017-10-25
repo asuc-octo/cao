@@ -61,12 +61,12 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
 
             // For operations on a single row
             $scope.dataTableRowOps = {
-              edit: {
-                icon: 'glyphicon-pencil',
-                link: function (rowId) {
-                  return I18n.l('/:locale/due_dates/' + rowId + '/edit');
-                }
-              },
+            //   edit: {
+            //     icon: 'glyphicon-pencil',
+            //     link: function (rowId) {
+            //       return I18n.l('/:locale/due_dates/' + rowId + '/edit');
+            //     }
+            //   },
               delete: {
                 icon: 'glyphicon-remove',
                 action: function (rowId) {
