@@ -105,9 +105,9 @@ angular.module('QueryBuilderDirective', ['I18n'])
           // For use in the template
           scope.form = form;
 
-          if (!scope.filters) {
-            scope.filters = [];
-          }
+          // if (!scope.filters) {
+          //   scope.filters = [];
+          // }
 
           // Dummy id for `ng-repeat` to track by
           var nextFilterId = 0;
@@ -119,6 +119,7 @@ angular.module('QueryBuilderDirective', ['I18n'])
 
             nextFilterId = _.max(usedIds) + 1;
           }
+
 
           /**
            * Adds a filter.

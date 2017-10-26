@@ -89,8 +89,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
             console.log(data.filters);
           },
           stateLoadParams: function (settings, data) {
-            $scope.queryBuilderFilters = data.filters;
-            console.log($scope.queryBuilderFilters);
+            $scope.queryBuilderFilters = data.filters || [];
           }
         };
 
@@ -156,6 +155,8 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
             $scope.dataTableInstance.ajax.reload();
           }
         };
+        $scope.queryBuilderFilters = [];
+
 
         /**
          * Deletes a user.

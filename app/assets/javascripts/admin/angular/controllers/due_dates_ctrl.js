@@ -6,10 +6,10 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
          * Allowed user roles.
          */
         var USER_ROLE_OPTIONS = [
-          { label: 'Admin', value: 1},
-          { label: 'Executive', value: 2},
-          { label: 'CAO', value: 3},
-          { label: 'Senator', value: 4}
+          { label: 'Admin', value: "1"},
+          { label: 'Executive', value: "2"},
+          { label: 'CAO', value: "3"},
+          { label: 'Senator', value: "4"}
         ];
 
         /**
@@ -50,7 +50,7 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
                 data.filters = $scope.queryBuilderFilters;
               },
               stateLoadParams: function (settings, data) {
-                $scope.queryBuilderFilters = data.filters;
+                $scope.queryBuilderFilters = data.filters || [];
               }
             };
 
@@ -143,15 +143,16 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
             $scope.queryBuilderOptions = {
               columns: [
                 {
-                  name: 'role', label: 'Role', type: 'select',
+                  name: 'role_id', label: 'Role', type: 'select',
                   selectizeOptions: USER_ROLE_SELECTIZE_OPTIONS
                 }
               ],
-              initialColumns: ['role'],
+              initialColumns: ['role_id'],
               onSubmit: function () {
                 $scope.dataTableInstance.ajax.reload();
               }
             };
+            $scope.queryBuilderFilters = [];
         };
 
         /**
