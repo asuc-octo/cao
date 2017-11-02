@@ -1,3 +1,9 @@
 <div ng-init="actionIndex()">
     <h2 translate="Punctuality"></h2>
+    <div class="list-group">
+      <a href="#" class="list-group-item" ng-repeat="user in users" ng-click="getPunctuality(user)">
+        <h4 class="list-group-item-heading">Senator {{user.email}}</h4>
+        <p class="list-group-item-text">Click to view punctuality</p>
+      </a>
+    </div>
 </div>
