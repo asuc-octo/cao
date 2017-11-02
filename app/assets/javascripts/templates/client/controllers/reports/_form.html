@@ -2,7 +2,7 @@
 
 <form class="form-horizontal">
   <fieldset>
-    <legend>New Report</legend>
+    <!-- <legend>New Report</legend> -->
       </div>
     </div>
     <div class="form-group">
@@ -27,7 +27,7 @@
       <label for="select" class="col-lg-2 control-label">Due Date</label>
       <div class="col-lg-10">
 
-        <select class="form-control" id="select" required="true" ng-model="report.due_date_id" ng-options="x for x in currentUser.roles[0]">
+        <select class="form-control" id="select" required="true" ng-model="report.due_date_id" ng-options="x for x in report.due_dates">
           <option value="">Nothing selected</option>
 <!--           <option>1</option>
           <option>2</option> -->

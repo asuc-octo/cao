@@ -60,6 +60,8 @@ Rails.application.routes.draw do
     end
 
     resources :attachment_joins, only: [:create, :destroy]
+
+    get '/role_to_due_dates', to: 'reports#due_dates'
   end
 
   # We don't anticipate that the FineUploaderController will ever need to be

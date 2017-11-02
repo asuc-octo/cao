@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
 	respond_to :json
 
-	before_action :load_basics, except: [:index, :create]
+	before_action :load_basics, except: [:index, :create, :due_dates]
 
 	# This is good practice, as it provides a check that 'authorize' calls have
 	# not been inadvertantly skipped.
@@ -68,6 +68,10 @@ class ReportsController < ApplicationController
 
 	  respond_with @report
 	end
+
+	def due_dates
+    respond_with current_user.roles[0].due_dates
+  end
 
 	private
 

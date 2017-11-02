@@ -1,9 +1,9 @@
-angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc'])
+angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc', 'ngResource'])
   .controller('ReportsCtrl', [
     '$scope', 'AuthSvc', '$state', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc',
-    'initialData',
+    'initialData', '$resource',
     function ($scope, $state, AuthSvc, I18n, Flash, Report, AttachmentLibrarySvc,
-              initialData) {
+              initialData, $resource) {
       
       /**
        * The 'index' action.
@@ -52,8 +52,12 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'Attachment
        */
       $scope.actionNew = function () {
         $scope.report = initialData;
-        $scope.currentUser = $scope.authSvc.currentUser();
-        console.log($scope.currentUser);
+        $scope.due_dates = $resource('/:locale/role_to_due_dates', {});
+        // due_dates = Report.get_dates();
+        // due_dates.$promise.then(function (response) {
+        //   $scope.due_dates = response;
+        //   console.log(response);
+        // });
       };
 
       /**
