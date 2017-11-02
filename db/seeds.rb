@@ -3,7 +3,7 @@ User.destroy_all
 DueDate.destroy_all
 
 # Create an administrator
-admin = User.new email: 'admin@test.com', password: 'password'
+admin = User.new name: 'Andrew Chen', email: 'admin@test.com', password: 'password'
 admin.grant :admin
 admin.save!
 
