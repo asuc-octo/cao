@@ -39,6 +39,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
           processing: true, // Show the 'processing' indicator
           columns: [
             { data: 'id' },
+            { data: 'name'},
             { data: 'email' },
             { data: 'roles',
               searchable: false, orderable: false,
