@@ -37,3 +37,5 @@
 # It is easy enough to forget, so we include it here. Feel free to remove if you
 # are not on OS X, or have ignored it globally.
 **/*.DS_Store
+
+/config/database.yml
