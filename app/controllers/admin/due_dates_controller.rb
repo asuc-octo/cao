@@ -10,7 +10,7 @@ class Admin::DueDatesController < Admin::ApplicationController
     def index
       authorize DueDate
 
-      due_dates_filter = QueryBuilder.new(policy_scope(DueDate), params[:filters])
+      due_dates_filter = QueryBuilder.new(DueDate, params[:filters])
 
       @due_dates_adapter = DataTableAdapter.new(DueDate, params, due_dates_filter.query)
 
