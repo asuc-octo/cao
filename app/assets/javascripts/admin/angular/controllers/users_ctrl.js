@@ -139,6 +139,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
 
         $scope.queryBuilderOptions = {
           columns: [
+            { name: 'name', label: 'Name', type: 'text' },
             { name: 'email', label: 'Email', type: 'text' },
             // See query-builder for why 'id' column has type 'text'
             { name: 'id', label: 'ID', type: 'text' },
@@ -151,7 +152,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
               selectizeOptions: USER_ROLE_SELECTIZE_OPTIONS
             }
           ],
-          initialColumns: ['email', 'id'],
+          initialColumns: ['name', 'role'],
           onSubmit: function () {
             $scope.dataTableInstance.ajax.reload();
           }

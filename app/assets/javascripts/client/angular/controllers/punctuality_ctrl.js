@@ -13,12 +13,13 @@ angular.module('PunctualityCtrl', ['I18n', 'Flash', 'User'])
           // action, no debouncing is required.
           var fetchUsers = function () {
             $scope.users = User.query();
+            console.log($scope.users);
           };
           fetchUsers();
       };
 
       $scope.getPunctuality = function(user) {
-          console.log(user.email);
+          console.log(user.role);
       };
 
     }]);
