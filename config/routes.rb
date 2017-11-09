@@ -48,6 +48,10 @@ Rails.application.routes.draw do
 
     resources :posts
 
+    resources :reports
+
+    resources :due_dates
+
     resources :attachments do
       collection do
         post 'batch_destroy'
@@ -73,6 +77,12 @@ Rails.application.routes.draw do
       end
 
       resources :users, except: [:show] do
+        collection do
+          post 'batch_destroy'
+        end
+      end
+
+      resources :due_dates, except: [:show] do
         collection do
           post 'batch_destroy'
         end

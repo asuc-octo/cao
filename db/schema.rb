@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170915021403) do
+ActiveRecord::Schema.define(version: 20171019020016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,11 @@ ActiveRecord::Schema.define(version: 20170915021403) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "due_dates", force: :cascade do |t|
+    t.datetime "deadline", null: false
+    t.integer  "role_id"
+  end
+
   create_table "key_value_stores", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -81,6 +86,20 @@ ActiveRecord::Schema.define(version: 20170915021403) do
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "reports", force: :cascade do |t|
+    t.text     "meetings_attended"
+    t.text     "current_projects"
+    t.text     "expenditures"
+    t.text     "other"
+    t.integer  "due_date_id"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "reports", ["due_date_id"], name: "index_reports_on_due_date_id", using: :btree
+  add_index "reports", ["user_id"], name: "index_reports_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
