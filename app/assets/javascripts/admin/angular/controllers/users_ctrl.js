@@ -86,6 +86,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
           // Save/load the query builder state along with the table state
           stateSaveParams: function (settings, data) {
             data.filters = $scope.queryBuilderFilters;
+            console.log(data.filters);
           },
           stateLoadParams: function (settings, data) {
             $scope.queryBuilderFilters = data.filters || [];
@@ -165,7 +166,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
         $scope.deleteUser = function (userId) {
           I18n.confirm('Really delete user #' + userId + '?',
             'really_delete_user_id', { id: userId }).then(function () {
-            
+
             $scope.pleaseWaitSvc.request();
             // When performing an operation on a single row, unselect all rows
             // to avoid any ambiguity about the scope of the operation.
@@ -197,7 +198,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
        */
       $scope.actionNew = function () {
         $scope.user = initialData;
-
+        console.log($scope.user)
         $scope.userRoleSelectizeOptions = USER_ROLE_SELECTIZE_OPTIONS;
       };
 
