@@ -1,0 +1,30 @@
+<div class="row" ng-init="actionNew()">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h2>New Due Date</h2>
+
+    <form role="form" novalidate fb-errors="userErrors" confirm-dirty-form>
+      <!--
+      Field created without the use of 'fb-field'.
+      This illustrates how fb-field is merely an optional convenience. If you
+      need to achieve something beyond its scope, just don't use it!
+      -->
+      <div class="form-inputs">
+
+        <fb-field type="date" required="true"
+                  ng-model="due_date.deadline"></fb-field>
+
+        <fb-field ng-model="due_date.role_id">
+          <selectize name="role_id" ng-model="due_date.role_id"
+                   options="userRoleSelectizeOptions"></selectize>
+        </fb-field>
+
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" ng-click="actionCreate()">
+          Create
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

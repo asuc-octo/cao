@@ -122,6 +122,31 @@ app.config([
         }
       })
 
+      // Due Dates routes
+      .state('app.due_dates', {
+        abstract: true,
+        url: '/due_dates',
+        template: '<div ui-view></div>',
+        resolve: {
+          initialData: angular.noop
+        }
+      })
+      .state('app.due_dates.index', {
+        url: '',
+        templateUrl: 'admin/controllers/due_dates/index.html',
+        controller: 'DueDatesCtrl'
+      })
+      .state('app.due_dates.new', {
+        url: '/new',
+        templateUrl: 'admin/controllers/due_dates/new.html',
+        controller: 'DueDatesCtrl',
+        resolve: {
+          initialData: ['DueDate', function (DueDate) {
+            return new DueDate({ deadline: '', role_id: '' });
+          }]
+        }
+      })
+
       // Error routes
       .state('401', {
         url: '/401',

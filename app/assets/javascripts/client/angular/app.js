@@ -23,6 +23,7 @@ var app = angular.module('App', [
   'HomeCtrl',
   'PostsCtrl',
   'ReportsCtrl',
+  'PunctualityCtrl',
   'AttachmentsCtrl',
 
   // Directives
@@ -49,7 +50,7 @@ app.config([
   function (I18nProvider, QBEditorProvider, AttachmentViewerProvider) {
     I18nProvider.setLocale(Static.locale);
     I18nProvider.setAvailableLocales(Static.available_locales);
-    
+
     I18nProvider.setLocaleSwitchUrlBuilder(function (newLocale, newUrl) {
       return '/i18n/switch_locale?locale=' + newLocale + '&return_to=' + newUrl;
     });
