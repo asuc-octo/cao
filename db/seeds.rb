@@ -8,7 +8,7 @@ admin.grant :admin
 admin.save!
 
 # Create a due date
-dueDate = DueDate.create! role_id: 1, deadline: DateTime.now
+dueDate = DueDate.create! role_id: 1, deadline: DateTime.now + 1
 
 # Create a post on behalf of the administrator
 admin.posts.create! message: 'Seeded post from the seeded administrator.'
