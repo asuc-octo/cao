@@ -15,7 +15,7 @@ FactoryGirl.define do
   #   FactoryGirl.create(:post)
   #   FactoryGirl.create(:post, user: some_user)
   factory :post do
-    message 'This is a post!'
+    meetings_attended 'This is a post!'
     user
   end
 end

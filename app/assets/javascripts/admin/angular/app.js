@@ -20,6 +20,7 @@ var app = angular.module('App', [
   'HomeCtrl',
   'AppSettingsCtrl',
   'PostsCtrl',
+  'ReportsCtrl',
   'UsersCtrl',
   'DueDatesCtrl',
 
