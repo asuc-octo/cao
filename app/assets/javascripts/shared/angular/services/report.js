@@ -27,7 +27,7 @@ angular.module('Report', ['I18n', 'ArrayMetadataResponseAdapter'])
       resource.get_dates = function () {
         return this.get(
           {
-            memberAction: "due_dates",
+            collectionAction: "potential_due_dates",
           },
         );
       };

@@ -61,7 +61,7 @@ Rails.application.routes.draw do
 
     resources :attachment_joins, only: [:create, :destroy]
 
-    get '/role_to_due_dates', to: 'reports#due_dates'
+    get '/potential_due_dates', to: 'application#potential_due_dates'
   end
 
   # We don't anticipate that the FineUploaderController will ever need to be
@@ -103,6 +103,8 @@ Rails.application.routes.draw do
 
   get '/(:locale)' => 'home#index', as: :localized_root
   root 'home#index'
+
+
 
   # Priority is based on order of creation: first created => highest priority.
   # See how all your routes lay out with "rake routes".

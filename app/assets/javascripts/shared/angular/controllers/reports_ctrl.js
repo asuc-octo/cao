@@ -51,13 +51,11 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'Attachment
        * Builds an empty report for the form.
        */
       $scope.actionNew = function () {
-        $scope.report = initialData;
-        $scope.due_dates = $resource('/:locale/role_to_due_dates', {});
-        // due_dates = Report.get_dates();
-        // due_dates.$promise.then(function (response) {
-        //   $scope.due_dates = response;
-        //   console.log(response);
-        // });
+        datesQuery = $resource('/potential_due_dates.json', {})
+        datesQuery.$promise.then(function (response) {
+          $scope.due_date_options = response;
+          console.log(response);
+        })
       };
 
       /**
