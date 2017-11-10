@@ -28,7 +28,7 @@ angular.module('PunctualityCtrl', ['I18n', 'Flash', 'User'])
               tardy = (punc < 0) ? " late :(" : " early :)";
 
               if (punc == "missing" && deadline.getTime() < now.getTime()) {
-                  user.due_dates[i].punctuality = "Not yet submitted :((";
+                  user.due_dates[i].punctuality = "Not submitted :((";
               } else if (punc == "missing") {
                   user.due_dates[i].punctuality = "Not yet due, chill";
               } else if (punc == 0) {
