@@ -7,7 +7,7 @@ json.array! @users do |user|
         if dd != nil
             json.days_early ((due_date.deadline - user.reports.find{|report| report.due_date_id == due_date.id}.created_at) / 86400).round
         else
-            json.days_early nil
+            json.days_early "missing"
         end
     end
 end

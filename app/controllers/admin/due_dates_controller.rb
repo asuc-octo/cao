@@ -23,7 +23,7 @@ class Admin::DueDatesController < Admin::ApplicationController
         roles.each { |role|
             @due_date = DueDate.new(due_date_params)
             authorize @due_date
-            @due_date.role_id = role
+            @due_date.role_id = Role.find_by_name(role).id
             @due_date.save
         }
       end
