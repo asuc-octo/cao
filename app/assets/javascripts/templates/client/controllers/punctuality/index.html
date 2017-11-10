@@ -1,7 +1,7 @@
 <div ng-init="actionIndex()">
     <h2 translate="Punctuality"></h2>
     <div class="list-group">
-      <a href="#" class="list-group-item" ng-repeat="user in users" ng-click="formatDates(user); showTable = !showTable">
+      <a class="list-group-item" ng-repeat="user in users" ng-click="formatDates(user); showTable = !showTable">
         <h4 class="list-group-item-heading">{{user.role}} {{user.name}}</h4>
         <p class="list-group-item-text">Click to view punctuality</p>
         <table class="table table-striped table-hover " ng-show="showTable">

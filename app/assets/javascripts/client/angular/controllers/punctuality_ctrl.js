@@ -24,15 +24,18 @@ angular.module('PunctualityCtrl', ['I18n', 'Flash', 'User'])
               deadline = new Date(user.due_dates[i].deadline);
               now = new Date();
 
-              if (punc > 0) {
-                  user.due_dates[i].punctuality = Math.abs(punc).toString() + " days early";
-              } else if (punc <= 0) {
-                  user.due_dates[i].punctuality = Math.abs(punc).toString() + " days late";
-              } else if (punc == "missing" && deadline.getTime() < now.getTime()) {
-                  user.due_dates[i].punctuality = "Not yet submitted.";
+              day = (punc == 1 || punc == -1) ? " day" : " days";
+              tardy = (punc < 0) ? " late :(" : " early :)";
+
+              if (punc == "missing" && deadline.getTime() < now.getTime()) {
+                  user.due_dates[i].punctuality = "Not yet submitted :((";
+              } else if (punc == "missing") {
+                  user.due_dates[i].punctuality = "Not yet due, chill";
+              } else if (punc == 0) {
+                  user.due_dates[i].punctuality = "Right on time!";
               } else {
-                  user.due_dates[i].punctuality = "Not yet due.";
-              };
+                  user.due_dates[i].punctuality = Math.abs(punc).toString() + day + tardy;
+              }
 
               user.due_dates[i].deadline = deadline.toLocaleDateString("en-us", dateOptions);
           };
