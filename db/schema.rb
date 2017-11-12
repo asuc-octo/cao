@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019020016) do
+ActiveRecord::Schema.define(version: 20171102040134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,10 +76,7 @@ ActiveRecord::Schema.define(version: 20171019020016) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "meetings_attended"
-    t.string   "current_projects"
-    t.string   "expenditures"
-    t.string   "other"
+    t.string   "message"
     t.integer  "user_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
@@ -141,6 +138,7 @@ ActiveRecord::Schema.define(version: 20171019020016) do
     t.datetime "updated_at"
     t.string   "authentication_token"
     t.string   "locale"
+    t.string   "name"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
