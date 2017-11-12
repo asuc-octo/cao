@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 20171102040134) do
   create_table "posts", force: :cascade do |t|
     t.string   "message"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
