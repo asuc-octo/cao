@@ -124,6 +124,15 @@ posts-table:
     expenditures: '@:expenditures'
     other: '@:other'
 
+reports-table:
+  columns:
+    created_at: '@:Created At'
+    id: '@:ID'
+    meetings_attended: '@:meetings_attended'
+    current_projects: '@:current_projects'
+    expenditures: '@:expenditures'
+    other: '@:other'
+
 users-table:
   columns:
     confirmed_at: '@:Confirmed At'
