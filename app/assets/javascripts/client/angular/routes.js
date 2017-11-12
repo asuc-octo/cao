@@ -127,6 +127,7 @@ app.config([
             return Report.edit({ reportId: $stateParams.id }).$promise;
           }]
         }
+      })
 
       // Punctuality routes
       .state('app.punctuality', {

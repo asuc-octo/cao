@@ -50,11 +50,7 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
                 data.filters = $scope.queryBuilderFilters;
               },
               stateLoadParams: function (settings, data) {
-<<<<<<< HEAD
-                $scope.queryBuilderFilters = data.filters;
-=======
                 $scope.queryBuilderFilters = data.filters || [];
->>>>>>> 4ef89062e25c72079498789104112ca18e32178f
               }
             };
 
@@ -147,27 +143,16 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
             $scope.queryBuilderOptions = {
               columns: [
                 {
-<<<<<<< HEAD
-                  name: 'role', label: 'Role', type: 'select',
-                  selectizeOptions: USER_ROLE_SELECTIZE_OPTIONS
-                }
-              ],
-              initialColumns: ['role'],
-=======
                   name: 'role_id', label: 'Role', type: 'select',
                   selectizeOptions: USER_ROLE_SELECTIZE_OPTIONS
                 }
               ],
               initialColumns: ['role_id'],
->>>>>>> 4ef89062e25c72079498789104112ca18e32178f
               onSubmit: function () {
                 $scope.dataTableInstance.ajax.reload();
               }
             };
-<<<<<<< HEAD
-=======
             $scope.queryBuilderFilters = [];
->>>>>>> 4ef89062e25c72079498789104112ca18e32178f
         };
 
         /**
