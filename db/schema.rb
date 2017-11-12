@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 20171019020016) do
     t.string   "expenditures"
     t.string   "other"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
