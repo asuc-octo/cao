@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019020016) do
+ActiveRecord::Schema.define(version: 20171109052026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 20171019020016) do
     t.datetime "deadline", null: false
     t.integer  "role_id"
   end
+
+  add_index "due_dates", ["role_id"], name: "index_due_dates_on_role_id", using: :btree
 
   create_table "key_value_stores", force: :cascade do |t|
     t.string   "name",       null: false
@@ -141,6 +143,7 @@ ActiveRecord::Schema.define(version: 20171019020016) do
     t.datetime "updated_at"
     t.string   "authentication_token"
     t.string   "locale"
+    t.string   "name"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree

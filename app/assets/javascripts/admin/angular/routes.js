@@ -77,6 +77,7 @@ app.config([
             return new User({
               // It is good practice to initialize to non-null values
               email: '',
+              name: '',
               password: '',
               password_confirmation: ''
             })

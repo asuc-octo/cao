@@ -4,7 +4,6 @@ angular.module('PostsCtrl', ['I18n', 'Flash', 'Post', 'AttachmentLibrarySvc'])
     'initialData',
     function ($scope, $state, I18n, Flash, Post, AttachmentLibrarySvc,
               initialData) {
-      
       /**
        * The 'index' action.
        */
@@ -21,6 +20,7 @@ angular.module('PostsCtrl', ['I18n', 'Flash', 'Post', 'AttachmentLibrarySvc'])
 
           postsQuery.$promise.then(function (response) {
             $scope.posts = response;
+            console.log(response);
           }, function (failureResponse) {
             // Do something on failure
           }).finally(function () {

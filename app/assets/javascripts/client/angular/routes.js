@@ -79,7 +79,6 @@ app.config([
         }
       })
 
-
       // Report routes
       .state('app.reports', {
         abstract: true,
