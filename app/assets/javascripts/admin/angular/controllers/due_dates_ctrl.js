@@ -3,20 +3,39 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
     '$scope', '$state', 'I18n', 'Flash', 'DueDate', 'initialData',
     function($scope, $state, I18n, Flash, DueDate, initialData) {
         /**
-         * Allowed user roles.
+         * Allowed user roles for search.
          */
-        var USER_ROLE_OPTIONS = [
-          { label: 'Admin', value: "1"},
-          { label: 'Executive', value: "2"},
-          { label: 'CAO', value: "3"},
-          { label: 'Senator', value: "4"}
+        var USER_ROLE_SEARCH_OPTIONS = [
+            { label: 'Admin', value: '1'},
+            { label: 'Executive', value: '2'},
+            { label: 'CAO', value: '3'},
+            { label: 'Senator', value: '4'}
         ];
 
         /**
-         * Configuration for the user role Selectize instance.
+         * Configuration for the user role Selectize instance, for search.
          */
-        var USER_ROLE_SELECTIZE_OPTIONS = {
-          options: USER_ROLE_OPTIONS,
+        var USER_ROLE_SEARCH_SELECTIZE_OPTIONS = {
+          options: USER_ROLE_SEARCH_OPTIONS,
+          labelField: 'label', valueField: 'value',
+          searchField: 'label'
+        };
+
+        /**
+         * Allowed user roles for due date creation.
+         */
+        var USER_ROLE_CREATION_OPTIONS = [
+            { label: 'Admin', value: 'admin'},
+            { label: 'Executive', value: 'executive'},
+            { label: 'CAO', value: 'cao'},
+            { label: 'Senator', value: 'senator'}
+        ];
+
+        /**
+         * Configuration for the user role Selectize instance for due date creation.
+         */
+        var USER_ROLE_CREATION_SELECTIZE_OPTIONS = {
+          options: USER_ROLE_CREATION_OPTIONS,
           labelField: 'label', valueField: 'value',
           searchField: 'label'
         };
@@ -144,7 +163,7 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
               columns: [
                 {
                   name: 'role_id', label: 'Role', type: 'select',
-                  selectizeOptions: USER_ROLE_SELECTIZE_OPTIONS
+                  selectizeOptions: USER_ROLE_SEARCH_SELECTIZE_OPTIONS
                 }
               ],
               initialColumns: ['role_id'],
@@ -163,7 +182,7 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
 
           $scope.due_date = initialData;
           console.log($scope.due_date);
-          $scope.userRoleSelectizeOptions = USER_ROLE_SELECTIZE_OPTIONS;
+          $scope.userRoleSelectizeOptions = USER_ROLE_CREATION_SELECTIZE_OPTIONS;
         };
 
         /**
