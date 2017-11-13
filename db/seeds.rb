@@ -29,7 +29,6 @@ dueDate4 = DueDate.create! role_id: 3, deadline: DateTime.now - 1
 dueDate5 = DueDate.create! role_id: 3, deadline: DateTime.now + 2
 dueDate6 = DueDate.create! role_id: 4, deadline: DateTime.now - 2
 
-
 # Create a bunch of reports
 Report.create! user_id: hahe.id, due_date_id: dueDate1.id, meetings_attended: 'what.'
 Report.create! user_id: hahe.id, due_date_id: dueDate2.id, meetings_attended: 'what2.'

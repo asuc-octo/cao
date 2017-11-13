@@ -2,6 +2,7 @@ angular.module('PunctualityCtrl', ['I18n', 'Flash', 'User'])
   .controller('PunctualityCtrl', [
     '$scope', '$state', 'I18n', 'Flash', 'User', 'initialData',
     function ($scope, $state, I18n, Flash, User, initialData) {
+
       /**
        * The 'index' action.
        */
