@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
 
   has_many :authentications, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :reports, dependent: :destroy
   has_many :attachments, dependent: :destroy
   has_many :reports, dependent: :destroy
 

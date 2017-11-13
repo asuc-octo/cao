@@ -1,4 +1,5 @@
-class ReportPolicy < ApplicationPolicy
+# Authorization policy for DueDate controller actions.
+class DueDatePolicy < ApplicationPolicy
   def index?
     true
   end
