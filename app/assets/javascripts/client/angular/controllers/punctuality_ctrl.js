@@ -13,45 +13,50 @@ angular.module('PunctualityCtrl', ['I18n', 'Flash', 'User'])
             console.log($scope.users);
           };
 
+          now = new Date();
+          millisecondsInADay = 8.64e+7;
+
           fetchUsers();
       };
+      // Get data from the JSON and process it to make it easier for the view
       $scope.formatDates = function(user) {
-          dateOptions = {
+          var dateOptions = {
               weekday: "long", year: "numeric", month: "long", day: "numeric"
           };
           for (i = 0; i < user.due_dates.length; i++) {
-              punc = user.due_dates[i].days_early;
-              deadline = new Date(user.due_dates[i].deadline);
-              now = new Date();
+              // Format the "Report Date" column to make it look prettier
+              var deadline = new Date(user.due_dates[i].deadline);
+              user.due_dates[i].deadline = deadline.toLocaleDateString("en-us", dateOptions);
 
-              day = (punc == 1 || punc == -1) ? " day" : " days";
-              tardy = (punc < 0) ? " late :(" : " early :)";
+              // Make the "Punctuality" column
+              var punctuality = user.due_dates[i].days_early;
+              var day = (punctuality == 1 || punctuality == -1) ? " day" : " days";
+              var tardy = (punctuality < 0) ? " late :(" : " early :)";
 
-              if (punc == "missing" && deadline.getTime() < now.getTime()) {
+              if (punctuality == "missing") {
                   user.due_dates[i].punctuality = "Not submitted :((";
-              } else if (punc == "missing") {
+              } else if (punctuality == "chill") {
                   user.due_dates[i].punctuality = "Not yet due, chill";
-              } else if (punc == 0) {
+              } else if (punctuality == 0) {
                   user.due_dates[i].punctuality = "Right on time!";
               } else {
-                  user.due_dates[i].punctuality = Math.abs(punc).toString() + day + tardy;
+                  user.due_dates[i].punctuality = Math.abs(punctuality).toString() + day + tardy;
               }
-
-              user.due_dates[i].deadline = deadline.toLocaleDateString("en-us", dateOptions);
           };
       };
+      // Decide the color of the row based on whether the user has turned in the report and whether it was on time
       $scope.getColor = function(due_date) {
-          punctuality = due_date.days_early;
-          deadline = due_date.deadline;
-          now = new Date();
-          if (punctuality == "missing" && Date.parse(deadline) < now.getTime()) {
+
+          var punctuality = due_date.days_early;
+
+          if (punctuality == "missing") {
               return "danger"
+          } else if (punctuality == "chill") {
+              return ""
           } else if (punctuality >= 0) {
               return "success"
           } else if (punctuality < 0) {
               return "warning"
-          } else {
-              return ""
           };
       };
 

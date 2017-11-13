@@ -192,8 +192,6 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
          */
         $scope.actionCreate = function () {
           $scope.due_date.deadline = new Date($scope.due_date.deadline);
-          console.log($scope.due_date);
-          console.log(typeof $scope.due_date);
           $scope.pleaseWaitSvc.request();
 
           $scope.due_date.$save(function (response) {
