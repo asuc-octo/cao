@@ -3,37 +3,48 @@
 
   <br>
 
+	<div class="panel-group" id="accordion">
+            <div class="panel panel-default" ng-repeat="(key, value) in posts">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{key}}">User #{{key}}
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse{{key}}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                    	<li ng-repeat="p in value">
+                    		<!-- ui-sref="app.posts.show({ id: p.id })" -->
+	           			 <a data-toggle="modal" data-target="#modal{{p.id}}">{{p.meetings_attended}}</a>
 
-		     
-	
+						<div class="modal fade" id="modal{{p.id}}" tabindex="-1" role="dialog" aria-labelledby="label{{p.id}}" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						        <h5 class="modal-title" id="label{{p.id}}">Report for {{p.created_at}}</h5>
+							    </div>
+							  	<div class="modal-body">
+							  		<h6 style="font-weight:bold;">Meetings Attended</h6>
+							  			<p>{{p.meetings_attended}}</p>
+							  	    <h6 style="font-weight:bold;">Current Projects</h6>
+							  			<p>{{p.current_projects}}</p>
+							  	    <h6 style="font-weight:bold;">Expenditures</h6>
+							  			<p>{{p.expenditures}}</p>
+							  	    <h6 style="font-weight:bold;">Other Information</h6>
+							  			<p>{{p.other}}</p>
 
-	<div id="accordion" role="tablist" aria-multiselectable="true">
-	  
-	  <div class="card" ng-repeat="(key, value) in posts" data-toggle="collapse" aria-expanded="false" data-target=".order{{key}}">
-	          
-	          <div class="card-header" role="tab" id="heading{{key}}">
-	      		<h5 class="mb-0">
-	        		<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{key}}" aria-expanded="false" aria-controls="collapse{{key}}">
-	        		User #{{key}}
-	        		</a>
-	      		</h5>
-	          </div>
-	        
-	          <div id="collapse{{key}}" class="collapse" role="tabpanel" aria-labelledby="heading{{key}}">
-	      		<div class="card-block">
-	        		<li ng-repeat="p in value">
-	           			 <a ui-sref="app.posts.show({ id: p.id })">{{p.message}}</a>
-	        		</li>
-	      		</div>
-	    	  </div>
-	   </div>
-	</div>
+								</div>
+						    </div>
+						  </div>
+						</div>
+					    </li>
+		        	</div>
+                </div>
+            </div>
+    	</div>
 
-
-	<br>
-    <br>
-
-    
-
-  <a ui-sref="app.posts.new" class="btn btn-primary" translate="New Post"></a>
+  <a ui-sref="app.posts.new" class="btn btn-primary" translate="Create Report"></a>
 </div>
