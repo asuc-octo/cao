@@ -42,6 +42,18 @@ app.config([
         controller: 'PostsCtrl'
       })
 
+      // Report routes
+      .state('app.reports', {
+        abstract: true,
+        url: '/reports',
+        template: '<div ui-view></div>'
+      })
+      .state('app.reports.index', {
+        url: '',
+        templateUrl: 'admin/controllers/reports/index.html',
+        controller: 'ReportsCtrl'
+      })
+
       // User routes
       .state('app.users', {
         abstract: true,
@@ -65,6 +77,7 @@ app.config([
             return new User({
               // It is good practice to initialize to non-null values
               email: '',
+              name: '',
               password: '',
               password_confirmation: ''
             })
@@ -107,6 +120,31 @@ app.config([
         templateUrl: function ($stateParams) {
           return 'admin/controllers/app_settings/' + $stateParams.category
             + '.html';
+        }
+      })
+
+      // Due Dates routes
+      .state('app.due_dates', {
+        abstract: true,
+        url: '/due_dates',
+        template: '<div ui-view></div>',
+        resolve: {
+          initialData: angular.noop
+        }
+      })
+      .state('app.due_dates.index', {
+        url: '',
+        templateUrl: 'admin/controllers/due_dates/index.html',
+        controller: 'DueDatesCtrl'
+      })
+      .state('app.due_dates.new', {
+        url: '/new',
+        templateUrl: 'admin/controllers/due_dates/new.html',
+        controller: 'DueDatesCtrl',
+        resolve: {
+          initialData: ['DueDate', function (DueDate) {
+            return new DueDate({ deadline: '', role_id: '' });
+          }]
         }
       })
 
