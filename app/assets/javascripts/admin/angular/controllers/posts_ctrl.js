@@ -5,6 +5,7 @@ angular.module('PostsCtrl', ['I18n', 'Flash', 'Post'])
       /**
        * The 'index' action.
        */
+
       $scope.actionIndex = function () {
         $scope.dataTableOptions = {
           // serverSide: true,
@@ -42,7 +43,7 @@ angular.module('PostsCtrl', ['I18n', 'Flash', 'Post'])
             data.filters = $scope.queryBuilderFilters;
           },
           stateLoadParams: function (settings, data) {
-            $scope.queryBuilderFilters = data.filters;
+            $scope.queryBuilderFilters = data.filters || [];
           }
         };
 
@@ -151,5 +152,6 @@ angular.module('PostsCtrl', ['I18n', 'Flash', 'Post'])
             $scope.dataTableInstance.ajax.reload();
           }
         };
+        $scope.queryBuilderFilters = [];
       };
     }]);

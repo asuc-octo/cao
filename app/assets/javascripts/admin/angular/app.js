@@ -13,6 +13,7 @@ var app = angular.module('App', [
   'AuthSvc',
   'Post',
   'User',
+  'DueDate',
 
   // Controllers
   'AppCtrl',
@@ -21,6 +22,7 @@ var app = angular.module('App', [
   'PostsCtrl',
   'ReportsCtrl',
   'UsersCtrl',
+  'DueDatesCtrl',
 
   // Directives
   'ngTranscludeReplace',

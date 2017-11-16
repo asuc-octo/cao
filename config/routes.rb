@@ -91,6 +91,12 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :due_dates, except: [:show] do
+        collection do
+          post 'batch_destroy'
+        end
+      end
+
       resource :app_settings, only: [:show, :update]
     end
 
@@ -98,10 +104,13 @@ Rails.application.routes.draw do
     root 'home#index'
   end
 
+  get '/punctuality' => 'punctuality#index'
+
   get '/i18n/translations' => 'i18n#translations'
   get '/i18n/switch_locale' => 'i18n#switch_locale', as: :switch_locale
 
   get '/(:locale)' => 'home#index', as: :localized_root
+
   root 'home#index'
 
 

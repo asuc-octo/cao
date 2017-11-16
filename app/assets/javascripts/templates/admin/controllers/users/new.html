@@ -9,6 +9,10 @@
       need to achieve something beyond its scope, just don't use it!
       -->
       <div class="form-inputs">
+
+        <fb-field type="name" required="true"
+                ng-model="user.name"></fb-field>
+
         <div class="form-group" ng-class="{'has-error': userErrors['email']}">
           <label for="email" class="control-label" >Email*</label>
           <input type="text" name="email" class="form-control"
