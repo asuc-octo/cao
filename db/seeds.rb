@@ -38,7 +38,3 @@ Report.create! user_id: lionming.id, due_date_id: dueDate4.id, meetings_attended
 Report.create! user_id: lionming.id, due_date_id: dueDate5.id, meetings_attended: 'hi3.'
 Report.create! user_id: andrewchenk.id, due_date_id: dueDate3.id, meetings_attended: 'hi4.'
 Report.create! user_id: andrewchenk.id, due_date_id: dueDate4.id, meetings_attended: 'hi5.'
-
-
-# Create a post on behalf of the administrator
-admin.posts.create! message: 'Seeded post from the seeded administrator.'
