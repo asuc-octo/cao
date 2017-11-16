@@ -19,6 +19,11 @@
           {{user.name}}
         </div>
 
+        <div class="form-group">
+          <label translate="Stipend"></label><br/>
+          {{user.stipend}}
+        </div>
+
         <fb-field ng-model="user.roles">
           <selectize name="roles" ng-model="user.roles"
                      options="userRoleSelectizeOptions"></selectize>

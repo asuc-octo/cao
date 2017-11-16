@@ -41,6 +41,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
             { data: 'id' },
             { data: 'name'},
             { data: 'email' },
+            { data: 'stipend'},
             { data: 'roles',
               searchable: false, orderable: false,
               render: function (data, type, row, meta) {
@@ -144,6 +145,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
             // See query-builder for why 'id' column has type 'text'
             { name: 'id', label: 'ID', type: 'text' },
             { name: 'created_at', label: 'Created At', type: 'date' },
+            { name: 'stipend', label: 'Stipend', type: 'text'},
             // Filter with a non database mapped column.
             // See also app/controllers/admin/users_controller.rb.
             // Another filter with a non database mapped column

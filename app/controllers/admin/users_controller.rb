@@ -76,7 +76,7 @@ class Admin::UsersController < Admin::ApplicationController
   private
 
   def user_params
-    params.required(:user).permit(:name, :email, :password, :password_confirmation)
+    params.required(:user).permit(:name, :email, :password, :password_confirmation, :stipend)
   end
 
   def prevent_deleting_self

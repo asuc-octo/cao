@@ -26,6 +26,7 @@ module ApplicationHelper
       { id: current_user.id,
         email: current_user.email,
         name: current_user.name,
+        stipend: current_user.stipend,
         roles: current_user.roles.pluck(:name) }.to_json
     end
   end
