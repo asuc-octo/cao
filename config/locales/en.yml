@@ -29,7 +29,8 @@ en:
         # For the sign up form
         password_new: '%{minimum_password_length} characters minimum'
         # For the user edit form
-        password_update: "Leave blank if you don't want to change it"
+        password_update: "Leave this field blank if you don't want to change your password"
+        password_confirmation: "Leave this field blank if you don't want to change your password"
         current_password: 'We need your current password to confirm your
           changes'
     errors:
@@ -54,23 +55,23 @@ en:
   users:
     confirmations:
       new:
-        resend_instructions: 'Resend Confirmation Instructions'
+        resend_instructions: 'Resend confirmation instructions'
     passwords:
       edit:
         new_password: 'New password'
-        change_password: 'Change Password'
+        change_password: 'Change password'
       new:
-        send_instructions: 'Send Password Reset Instructions'
+        send_instructions: 'Send password reset instructions'
     registrations:
       edit:
-        cancel_my_account: 'Cancel My Account'
+        cancel_my_account: 'Cancel my account'
         cancel_my_account_confirmation: 'Really cancel your account?'
-        unhappy: 'Unhappy?'
+        unhappy: 'Unhappy? Why would you be unhappy with this great website?'
       new:
-        sign_up: 'Sign Up'
+        sign_up: 'Sign up'
     sessions:
       new:
-        sign_in: 'Sign In'
+        sign_in: 'Sign in'
     shared:
       links:
         sign_in: 'Sign in'
@@ -82,12 +83,12 @@ en:
         didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
     unlocks:
       new:
-        resend_instructions: 'Resend Unlock Instructions'
+        resend_instructions: 'Resend unlock instructions'
 
   layouts:
     shared:
       locale_switcher_modal:
-        select_language: 'Select Language'
+        select_language: 'Select language'
 
   # Common strings
 

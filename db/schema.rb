@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005024638) do
+ActiveRecord::Schema.define(version: 20171109052026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,9 +65,11 @@ ActiveRecord::Schema.define(version: 20171005024638) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "due_dates", force: :cascade do |t|
-    t.datetime "due_date", null: false
+    t.datetime "deadline", null: false
     t.integer  "role_id"
   end
+
+  add_index "due_dates", ["role_id"], name: "index_due_dates_on_role_id", using: :btree
 
   create_table "key_value_stores", force: :cascade do |t|
     t.string   "name",       null: false
@@ -84,6 +86,8 @@ ActiveRecord::Schema.define(version: 20171005024638) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.text     "meetings_attended"
@@ -139,6 +143,7 @@ ActiveRecord::Schema.define(version: 20171005024638) do
     t.datetime "updated_at"
     t.string   "authentication_token"
     t.string   "locale"
+    t.string   "name"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree

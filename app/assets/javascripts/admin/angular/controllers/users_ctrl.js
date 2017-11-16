@@ -39,6 +39,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
           processing: true, // Show the 'processing' indicator
           columns: [
             { data: 'id' },
+            { data: 'name'},
             { data: 'email' },
             { data: 'roles',
               searchable: false, orderable: false,
@@ -86,9 +87,10 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
           // Save/load the query builder state along with the table state
           stateSaveParams: function (settings, data) {
             data.filters = $scope.queryBuilderFilters;
+            console.log(data.filters);
           },
           stateLoadParams: function (settings, data) {
-            $scope.queryBuilderFilters = data.filters;
+            $scope.queryBuilderFilters = data.filters || [];
           }
         };
 
@@ -137,6 +139,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
 
         $scope.queryBuilderOptions = {
           columns: [
+            { name: 'name', label: 'Name', type: 'text' },
             { name: 'email', label: 'Email', type: 'text' },
             // See query-builder for why 'id' column has type 'text'
             { name: 'id', label: 'ID', type: 'text' },
@@ -149,11 +152,13 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
               selectizeOptions: USER_ROLE_SELECTIZE_OPTIONS
             }
           ],
-          initialColumns: ['email', 'id'],
+          initialColumns: ['name', 'role'],
           onSubmit: function () {
             $scope.dataTableInstance.ajax.reload();
           }
         };
+        $scope.queryBuilderFilters = [];
+
 
         /**
          * Deletes a user.
@@ -163,7 +168,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
         $scope.deleteUser = function (userId) {
           I18n.confirm('Really delete user #' + userId + '?',
             'really_delete_user_id', { id: userId }).then(function () {
-            
+
             $scope.pleaseWaitSvc.request();
             // When performing an operation on a single row, unselect all rows
             // to avoid any ambiguity about the scope of the operation.
@@ -195,7 +200,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
        */
       $scope.actionNew = function () {
         $scope.user = initialData;
-
+        console.log($scope.user)
         $scope.userRoleSelectizeOptions = USER_ROLE_SELECTIZE_OPTIONS;
       };
 
