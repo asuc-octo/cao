@@ -1,8 +1,6 @@
 <div ng-init="actionIndex()">
   <h2 translate="Reports" translate-default="Reports"></h2>
 
-  <br>
-
 	<div class="panel-group" id="accordion">
             <div class="panel panel-default" ng-repeat="(key, value) in posts">
                 <div class="panel-heading">
@@ -15,7 +13,7 @@
                     <div class="panel-body">
                     	<li ng-repeat="p in value">
                     		<!-- ui-sref="app.posts.show({ id: p.id })" -->
-	           			 <a data-toggle="modal" data-target="#modal{{p.id}}">{{p.created_at}}</a>
+	           			 <a data-toggle="modal" data-target="#modal{{p.id}}">{{p.created_at}}: {{p.meetings_attended}}</a>
 
 						<div class="modal fade" id="modal{{p.id}}" tabindex="-1" role="dialog" aria-labelledby="label{{p.id}}" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
@@ -27,8 +25,6 @@
 						        <h5 class="modal-title" id="label{{p.id}}">Report for {{p.created_at}}</h5>
 							    </div>
 							  	<div class="modal-body">
-							  		<h6 style="font-weight:bold;">Message</h6>
-							  			<p>{{p.message}}</p>
 							  		<h6 style="font-weight:bold;">Meetings Attended</h6>
 							  			<p>{{p.meetings_attended}}</p>
 							  	    <h6 style="font-weight:bold;">Current Projects</h6>
