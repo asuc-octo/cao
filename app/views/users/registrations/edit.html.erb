@@ -14,7 +14,6 @@
           <%= f.email_field :email, autofocus: true %>
           <%= f.text_field :name, autofocus: true %>
 
-
           <% if devise_mapping.confirmable? &&
               resource.pending_reconfirmation? %>
 
@@ -26,7 +25,7 @@
           <% if f.object.encrypted_password.present? %>
             <%= f.password_field :current_password, autocomplete: 'off' %>
           <% end %>
-          <h4>Change your password</h4>
+          <h3>Change your password</h3>
           <%= f.password_field :password, autocomplete: 'off',
                                help: t('activerecord.help.user.password_update') %>
 
@@ -35,10 +34,13 @@
 
         </div>
 
+
         <div class="form-actions">
           <%= f.submit class: 'btn btn-primary' %>
         </div>
       <% end %>
+      <h3> Current Stipend</h3>
+         <%= @user.stipend %>
 
       <h3><%= t '.cancel_my_account' %></h3>
 

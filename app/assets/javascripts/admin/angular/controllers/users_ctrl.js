@@ -245,11 +245,13 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
 
         $scope.user.$update(function (response) {
           $scope.pleaseWaitSvc.release();
+                            console.log(failureResponse);
           Flash.push('success', 'User updated.', 'user_updated');
 
           $scope.navConfirmationSvc.setConfirmNav(false);
           $state.go('app.users.index');
         }, function (failureResponse) {
+
           $scope.pleaseWaitSvc.release();
           $scope.userErrors = failureResponse.data.errors;
         });

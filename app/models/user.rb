@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
 
   validates :authentication_token, uniqueness: true
   validate :email_in_sign_up_whitelist
+  validates_format_of :email,:with => Devise::email_regexp
 
   after_initialize :populate_locale_on_new
   before_save :ensure_authentication_token
