@@ -18,4 +18,8 @@ class ReportPolicy < ApplicationPolicy
   def batch_destroy?
     user && user.has_role?(:admin)
   end
+
+  def due_dates?
+    true
+  end
 end

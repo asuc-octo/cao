@@ -1,5 +1,51 @@
 <!-- Common form for creating/updating a report -->
-<form class="form-horizontal" name="report_form" role="form" novalidate fb-errors="reportErrors"
+
+<form class="form-horizontal">
+  <fieldset>
+    <!-- <legend>New Report</legend> -->
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="textArea" class="col-lg-2 control-label">Meetings Attended</label>
+      <div class="col-lg-10">
+        <textarea class="form-control" rows="3" id="textArea" required="true" ng-model="report.meetings_attended"></textarea>
+      </div>
+      <label for="textArea" class="col-lg-2 control-label">Current Projects</label>
+      <div class="col-lg-10">
+        <textarea class="form-control" rows="3" id="textArea" required="true" ng-model="report.current_projects"></textarea>
+      </div>
+      <label for="textArea" class="col-lg-2 control-label">Expenditures</label>
+      <div class="col-lg-10">
+        <textarea class="form-control" rows="3" id="textArea" required="true" ng-model="report.expenditures"></textarea>
+      </div>
+      <label for="textArea" class="col-lg-2 control-label">Other</label>
+      <div class="col-lg-10">
+        <textarea class="form-control" rows="3" id="textArea" required="true" ng-model="report.other"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select" class="col-lg-2 control-label">Due Date</label>
+      <div class="col-lg-10">
+
+        <select class="form-control" id="select" required="true" ng-model="report.due_date_id" ng-options="due_date.id as formatDate(due_date.deadline) for due_date in due_date_options">
+          <option value="">Nothing selected</option>
+<!--           <option>1</option>
+          <option>2</option> -->
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary" ng-Click="actionCreate()">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+
+
+<!-- <form class="form-horizontal" name="report_form" role="form" novalidate fb-errors="reportErrors"
       confirm-dirty-form>
 
   <fieldset>
@@ -23,5 +69,5 @@
             translate="Delete Report"></button>
     </div>
   </fieldset>
-    
-</form>
+
+</form> -->

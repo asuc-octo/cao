@@ -1,10 +1,10 @@
-angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report', 'AttachmentLibrarySvc'])
+angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc'])
   .controller('ReportsCtrl', [
-    '$scope', '$state', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc',
+    '$scope', '$state', 'AuthSvc', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc',
     'initialData',
-    function ($scope, $state, I18n, Flash, Report, AttachmentLibrarySvc,
+    function ($scope, $state, AuthSvc, I18n, Flash, Report, AttachmentLibrarySvc,
               initialData) {
-      
+
       /**
        * The 'index' action.
        */
@@ -52,6 +52,19 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report', 'AttachmentLibrarySvc'
        */
       $scope.actionNew = function () {
         $scope.report = initialData;
+        datesQuery = Report.new();
+        datesQuery.$promise.then(function (response) {
+          $scope.due_date_options = response;
+          console.log($scope.due_date_options);
+        });
+
+        dateOptions = {
+            weekday: "long", year: "numeric", month: "long", day: "numeric"
+        };
+
+        $scope.formatDate = function(date) {
+            return (new Date(date)).toLocaleDateString("en-us", dateOptions);
+        }
       };
 
       /**
@@ -61,7 +74,7 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report', 'AttachmentLibrarySvc'
        */
       $scope.actionCreate = function () {
         $scope.pleaseWaitSvc.request();
-
+        console.log($scope.report);
         $scope.report.$save(function (response) {
           $scope.pleaseWaitSvc.release();
           Flash.push('success', 'Report created.', 'report_created');
