@@ -1,10 +1,10 @@
-angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc', 'ngResource'])
+angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc'])
   .controller('ReportsCtrl', [
-    '$scope', 'AuthSvc', '$state', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc',
-    'initialData', '$resource',
+    '$scope', '$state', 'AuthSvc', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc',
+    'initialData',
     function ($scope, $state, AuthSvc, I18n, Flash, Report, AttachmentLibrarySvc,
-              initialData, $resource) {
-      
+              initialData) {
+
       /**
        * The 'index' action.
        */
@@ -51,11 +51,20 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'Attachment
        * Builds an empty report for the form.
        */
       $scope.actionNew = function () {
-        datesQuery = $resource('/potential_due_dates.json', {})
+        $scope.report = initialData;
+        datesQuery = Report.new();
         datesQuery.$promise.then(function (response) {
           $scope.due_date_options = response;
-          console.log(response);
-        })
+          console.log($scope.due_date_options);
+        });
+
+        dateOptions = {
+            weekday: "long", year: "numeric", month: "long", day: "numeric"
+        };
+
+        $scope.formatDate = function(date) {
+            return (new Date(date)).toLocaleDateString("en-us", dateOptions);
+        }
       };
 
       /**
@@ -65,7 +74,7 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'Attachment
        */
       $scope.actionCreate = function () {
         $scope.pleaseWaitSvc.request();
-
+        console.log($scope.report);
         $scope.report.$save(function (response) {
           $scope.pleaseWaitSvc.release();
           Flash.push('success', 'Report created.', 'report_created');

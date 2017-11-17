@@ -21,15 +21,20 @@ angular.module('Report', ['I18n', 'ArrayMetadataResponseAdapter'])
           },
           update: {
             method: 'PUT'
+          },
+          new: {
+              method: 'GET',
+              isArray: true,
+              params: { collectionAction: 'new' }
           }
         });
 
-      resource.get_dates = function () {
-        return this.get(
-          {
-            collectionAction: "potential_due_dates",
-          },
-        );
-      };
+      // resource.get_dates = function () {
+      //   return this.get(
+      //     {
+      //       collectionAction: "potential_due_dates",
+      //     },
+      //   );
+      // };
       return resource;
     }]);

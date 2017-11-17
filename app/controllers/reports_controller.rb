@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
 	respond_to :json
 
-	before_action :load_basics, except: [:index, :create, :potential_due_dates]
+	before_action :load_basics, except: [:index, :create, :new]
 
 	# This is good practice, as it provides a check that 'authorize' calls have
 	# not been inadvertantly skipped.
@@ -24,6 +24,12 @@ class ReportsController < ApplicationController
 
 	  respond_with @report
 	end
+
+    def new
+        authorize Report
+        @current_user = current_user
+        respond_with @current_user
+    end
 
 	def create
 	  @report = Report.new(report_params)
@@ -69,15 +75,11 @@ class ReportsController < ApplicationController
 	  respond_with @report
 	end
 
-	def potential_due_dates
-		puts current_user.roles[0].due_dates
-	  respond_with current_user.roles[0].due_dates
-	end
 
 	private
 
 	def report_params
-	  params.required(:report).permit(:message)
+	  params.required(:report).permit(:meetings_attended, :current_projects, :expenditures, :other, :due_date_id)
 	end
 
 	def load_basics

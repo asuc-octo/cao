@@ -27,7 +27,7 @@
       <label for="select" class="col-lg-2 control-label">Due Date</label>
       <div class="col-lg-10">
 
-        <select class="form-control" id="select" required="true" ng-model="report.due_date_id" ng-options="x for x in report.due_date_options">
+        <select class="form-control" id="select" required="true" ng-model="report.due_date_id" ng-options="due_date.id as formatDate(due_date.deadline) for due_date in due_date_options">
           <option value="">Nothing selected</option>
 <!--           <option>1</option>
           <option>2</option> -->
@@ -37,7 +37,7 @@
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" ng-Click="actionCreate()">Submit</button>
       </div>
     </div>
   </fieldset>
@@ -69,5 +69,5 @@
             translate="Delete Report"></button>
     </div>
   </fieldset>
-    
+
 </form> -->

@@ -61,7 +61,7 @@ Rails.application.routes.draw do
 
     resources :attachment_joins, only: [:create, :destroy]
 
-    get '/potential_due_dates', to: 'application#potential_due_dates'
+    # get '/potential_due_dates', to: 'application#potential_due_dates'
   end
 
   # We don't anticipate that the FineUploaderController will ever need to be
