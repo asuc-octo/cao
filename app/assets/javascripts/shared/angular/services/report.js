@@ -3,7 +3,7 @@ angular.module('Report', ['I18n', 'ArrayMetadataResponseAdapter'])
   .factory('Report', [
     '$resource', 'I18n', 'ArrayMetadataResponseAdapter',
     function($resource, I18n, ArrayMetadataResponseAdapter) {
-      return $resource(
+      var resource = $resource(
         '/:locale/reports/:collectionAction/:reportId/:memberAction.json',
         {
           reportId: '@id',
@@ -21,6 +21,20 @@ angular.module('Report', ['I18n', 'ArrayMetadataResponseAdapter'])
           },
           update: {
             method: 'PUT'
+          },
+          new: {
+              method: 'GET',
+              isArray: true,
+              params: { collectionAction: 'new' }
           }
         });
+
+      // resource.get_dates = function () {
+      //   return this.get(
+      //     {
+      //       collectionAction: "potential_due_dates",
+      //     },
+      //   );
+      // };
+      return resource;
     }]);
