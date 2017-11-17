@@ -1,7 +1,9 @@
 angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
   .controller('ReportsCtrl', [
     '$scope', 'I18n', 'Flash', 'Report',
-    function($scope, I18n, Flash, Report) {
+    function($scope, I18n, Flash, Report, Auth) {
+      $scope.current_user = Auth.getCurrentUser;
+
       $scope.actionIndex = function () {
         $scope.dataTableOptions = {
           serverSide: true,
@@ -21,6 +23,11 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
                 var reportUrl = I18n.l('/:locale/reports/' + data);
 
                 return '<a href="' + reportUrl + '">' + data + '</a>';
+              }
+            },
+            { data: 'user_id',
+              render: function (data, type, row, meta) {
+                return $scope.current_user.id;
               }
             },
             { data: 'meetings_attended' },
@@ -135,6 +142,7 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
 
         $scope.queryBuilderOptions = {
           columns: [
+            { name: 'user_id', label: 'User ID', type: 'text' },
             { name: 'meetings_attended', label: 'Meetings Attended', type: 'text' },
             { name: 'current_projects', label: 'Current Projects', type: 'text' },
             { name: 'expenditures', label: 'Expenditures', type: 'text' },
@@ -143,7 +151,7 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
             { name: 'id', label: 'ID', type: 'text' },
             { name: 'created_at', label: 'Created At', type: 'date' }
           ],
-          initialColumns: ['meetings_attended', 'current_projects', 'expenditures', 'other', 'id'],
+          initialColumns: ['user_id', 'meetings_attended', 'current_projects', 'expenditures', 'other', 'id'],
           onSubmit: function () {
             $scope.dataTableInstance.ajax.reload();
           }

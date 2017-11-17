@@ -1,4 +1,4 @@
-// Manages the Report resource on the server.
+                                          // Manages the Report resource on the server.
 angular.module('Report', ['I18n', 'ArrayMetadataResponseAdapter'])
   .factory('Report', [
     '$resource', 'I18n', 'ArrayMetadataResponseAdapter',

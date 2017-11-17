@@ -1,7 +1,0 @@
-[submodule "bootswatch."]
-	path = bootswatch.
-	url = https://github.com/thomaspark/bootswatch.git
-[submodule "bootswatch"]
-	path = bootswatch
-	url = https://github.com/thomaspark/bootswatch.git
-	branch = gh-pages
