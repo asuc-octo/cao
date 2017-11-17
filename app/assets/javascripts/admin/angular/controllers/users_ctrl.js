@@ -41,7 +41,6 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
             { data: 'id' },
             { data: 'name'},
             { data: 'email' },
-            { data: 'stipend'},
             { data: 'roles',
               searchable: false, orderable: false,
               render: function (data, type, row, meta) {
@@ -50,6 +49,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
                 }).join(', ')
               }
             },
+            { data: 'stipend'},
             { data: 'created_at',
               render: function (data, type, row, meta) {
                 return moment(data).format('lll');
