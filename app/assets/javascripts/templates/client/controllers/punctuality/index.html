@@ -7,14 +7,16 @@
         <table class="table table-striped table-hover " ng-show="showTable">
             <thead>
                 <tr>
-                    <th class="col-md-2">Report Date</th>
-                    <th class="col-md-2">Punctuality</th>
+                    <th class="col-md-3">Report Date</th>
+                    <th class="col-md-3">Punctuality</th>
+                    <th class="col-md-3">Stipend Reduction</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="due_date in user.due_dates" ng-class="getColor(due_date)">
-                    <th class="col-md-2">{{ due_date.deadline }}</th>
-                    <th class="col-md-2">{{ due_date.punctuality }}</th>
+                    <th class="col-md-3">{{ due_date.deadline }}</th>
+                    <th class="col-md-3">{{ due_date.punctuality }}</th>
+                    <th class="col-md-3">{{ due_date.stipend_reduction }}</th>
                 </tr>
             </tbody>
         </table>

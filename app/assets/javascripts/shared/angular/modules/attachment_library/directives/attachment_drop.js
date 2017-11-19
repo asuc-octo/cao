@@ -90,6 +90,7 @@ angular.module('AttachmentDrop', [
                   // We assume messages from the server are localized, so we
                   // don't need to provide a translation id.
                   Flash.now.push('danger', failureResponse.data.error);
+                  
                 } else {
                   Flash.now.push('danger', 'Error removing attachment.',
                     'attachment_drop.error_removing_attachment');

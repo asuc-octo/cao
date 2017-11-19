@@ -49,6 +49,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
                 }).join(', ')
               }
             },
+            { data: 'stipend'},
             { data: 'created_at',
               render: function (data, type, row, meta) {
                 return moment(data).format('lll');
@@ -144,6 +145,7 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
             // See query-builder for why 'id' column has type 'text'
             { name: 'id', label: 'ID', type: 'text' },
             { name: 'created_at', label: 'Created At', type: 'date' },
+            { name: 'stipend', label: 'Stipend', type: 'text'},
             // Filter with a non database mapped column.
             // See also app/controllers/admin/users_controller.rb.
             // Another filter with a non database mapped column
@@ -243,11 +245,13 @@ angular.module('UsersCtrl', ['I18n', 'Flash', 'User'])
 
         $scope.user.$update(function (response) {
           $scope.pleaseWaitSvc.release();
+                            console.log(failureResponse);
           Flash.push('success', 'User updated.', 'user_updated');
 
           $scope.navConfirmationSvc.setConfirmNav(false);
           $state.go('app.users.index');
         }, function (failureResponse) {
+
           $scope.pleaseWaitSvc.release();
           $scope.userErrors = failureResponse.data.errors;
         });

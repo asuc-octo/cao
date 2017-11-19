@@ -79,6 +79,7 @@ app.config([
               email: '',
               name: '',
               password: '',
+              stipend: 0, 
               password_confirmation: ''
             })
           }]
