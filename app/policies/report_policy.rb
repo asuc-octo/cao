@@ -1,4 +1,3 @@
-# Authorization policy for report controller actions.
 class ReportPolicy < ApplicationPolicy
   def index?
     true
@@ -18,5 +17,9 @@ class ReportPolicy < ApplicationPolicy
 
   def batch_destroy?
     user && user.has_role?(:admin)
+  end
+
+  def due_dates?
+    true
   end
 end

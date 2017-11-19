@@ -39,7 +39,6 @@ dueDate8 = DueDate.create! role_id: 3, deadline: DateTime.now
 dueDate9 = DueDate.create! role_id: 3, deadline: DateTime.now + 1
 dueDate10 = DueDate.create! role_id: 3, deadline: DateTime.now + 2
 
-
 # Create a bunch of reports
 Report.create! user_id: hahe.id, due_date_id: dueDate1.id, meetings_attended: 'what.'
 Report.create! user_id: hahe.id, due_date_id: dueDate2.id, meetings_attended: 'what2.'
@@ -58,3 +57,4 @@ Report.create! user_id: lionming.id, due_date_id: dueDate10.id, meetings_attende
 Report.create! user_id: andrewchenk.id, due_date_id: dueDate3.id, meetings_attended: 'hi.'
 Report.create! user_id: andrewchenk.id, due_date_id: dueDate4.id, meetings_attended: 'hi2.'
 Report.create! user_id: andrewchenk.id, due_date_id: dueDate5.id, meetings_attended: 'hi3.'
+

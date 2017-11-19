@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
 
   public
 
+  def potential_due_dates
+    puts current_user.roles[0].due_dates
+    respond_with current_user.roles[0].due_dates
+  end
+
   # Whether the current locale is the default locale.
   #
   # @return [true, false]
@@ -142,4 +147,6 @@ class ApplicationController < ActionController::Base
       }
     end
   end
+
+
 end
