@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # The OmniAuth callback routes need to be independent of any dynamic scope
   # (such as the `scope ':locale'` below). See
   # https://github.com/plataformatec/devise/wiki/How-To:-OmniAuth-inside-localized-scope
@@ -59,6 +60,8 @@ Rails.application.routes.draw do
     end
 
     resources :attachment_joins, only: [:create, :destroy]
+
+    # get '/potential_due_dates', to: 'application#potential_due_dates'
   end
 
   # We don't anticipate that the FineUploaderController will ever need to be
@@ -71,6 +74,12 @@ Rails.application.routes.draw do
   namespace :admin do
     scope '(:locale)', locale: /#{I18nUtils.admin_avail_locales.join('|')}/ do
       resources :posts, only: [:index, :destroy] do
+        collection do
+          post 'batch_destroy'
+        end
+      end
+
+      resources :reports, only: [:index, :destroy] do
         collection do
           post 'batch_destroy'
         end
@@ -103,6 +112,8 @@ Rails.application.routes.draw do
   get '/(:locale)' => 'home#index', as: :localized_root
 
   root 'home#index'
+
+
 
   # Priority is based on order of creation: first created => highest priority.
   # See how all your routes lay out with "rake routes".
