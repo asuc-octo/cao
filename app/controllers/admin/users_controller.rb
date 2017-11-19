@@ -52,6 +52,26 @@ class Admin::UsersController < Admin::ApplicationController
     ActiveRecord::Base.transaction do
       @user.roles = []
 
+      if (name = params[:user][:name])
+        @user.name = name
+        @user.save
+      end
+
+      if (password = params[:user][:password])
+        @user.password = password
+        @user.save
+      end
+
+      if (stipend = params[:user][:stipend])
+        @user.stipend = stipend
+        @user.save
+      end
+
+      if (email = params[:user][:email])
+        @user.email = email
+        @user.save
+      end
+
       if (roles = params[:user][:roles])
         roles.each { |role| @user.add_role role }
       end
@@ -76,7 +96,7 @@ class Admin::UsersController < Admin::ApplicationController
   private
 
   def user_params
-    params.required(:user).permit(:name, :email, :password, :password_confirmation)
+    params.required(:user).permit(:name, :email, :password, :password_confirmation, :stipend)
   end
 
   def prevent_deleting_self

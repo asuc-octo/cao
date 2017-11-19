@@ -66,6 +66,10 @@ class AttachmentsController < ApplicationController
     params.required(:attachment).permit(:name)
   end
 
+  def attachment_update_params
+    params.required(:attachment).permit(:stipend)
+  end
+
   # Builds custom filter logic for the query builder used in the index action.
   # See {QueryBuilder#initialize} for an understanding.
   def build_custom_logic (filter, query)

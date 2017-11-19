@@ -4,6 +4,7 @@
 #
 #  id                     :integer          not null, primary key
 #  email                  :string           default(""), not null
+#  name                   :string
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
@@ -44,6 +45,7 @@ class User < ActiveRecord::Base
 
   validates :authentication_token, uniqueness: true
   validate :email_in_sign_up_whitelist
+  validates_format_of :email,:with => Devise::email_regexp
 
   after_initialize :populate_locale_on_new
   before_save :ensure_authentication_token
