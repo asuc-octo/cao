@@ -2,7 +2,6 @@ angular.module('PunctualityCtrl', ['I18n', 'Flash', 'User'])
   .controller('PunctualityCtrl', [
     '$scope', '$state', 'I18n', 'Flash', 'User', 'initialData',
     function ($scope, $state, I18n, Flash, User, initialData) {
-
       /**
        * The 'index' action.
        */
@@ -20,30 +19,31 @@ angular.module('PunctualityCtrl', ['I18n', 'Flash', 'User'])
           fetchUsers();
       };
       // Get data from the JSON and process it to make it easier for the view
-      $scope.formatDates = function(user) {
+      $scope.formatDate = function(due_date) {
           var dateOptions = {
               weekday: "long", year: "numeric", month: "long", day: "numeric"
           };
-          for (i = 0; i < user.due_dates.length; i++) {
-              // Format the "Report Date" column to make it look prettier
-              var deadline = new Date(user.due_dates[i].deadline);
-              user.due_dates[i].deadline = deadline.toLocaleDateString("en-us", dateOptions);
+          // Format the "Report Date" column to make it look prettier
+          var deadline = new Date(due_date.deadline);
+          return deadline.toLocaleDateString("en-us", dateOptions);
+      };
 
-              // Make the "Punctuality" column
-              var punctuality = user.due_dates[i].days_early;
-              var day = (punctuality == 1 || punctuality == -1) ? " day" : " days";
-              var tardy = (punctuality < 0) ? " late :(" : " early :)";
+      $scope.getPunctuality = function(due_date) {
+          // Make the "Punctuality" column
+          var punctuality = due_date.days_early;
+          var day = (punctuality == 1 || punctuality == -1) ? " day" : " days";
+          var tardy = (punctuality < 0) ? " late :(" : " early :)";
 
-              if (punctuality == "missing") {
-                  user.due_dates[i].punctuality = "Not submitted :((";
-              } else if (punctuality == "chill") {
-                  user.due_dates[i].punctuality = "Not yet due, chill";
-              } else if (punctuality == 0) {
-                  user.due_dates[i].punctuality = "Right on time!";
-              } else {
-                  user.due_dates[i].punctuality = Math.abs(punctuality).toString() + day + tardy;
-              }
+          if (punctuality == "missing") {
+              punctuality = "Not submitted :((";
+          } else if (punctuality == "chill") {
+              punctuality = "Not yet due, chill";
+          } else if (punctuality == 0) {
+              punctuality = "Right on time!";
+          } else {
+              punctuality = Math.abs(punctuality).toString() + day + tardy;
           };
+          return punctuality
       };
       // Decide the color of the row based on whether the user has turned in the report and whether it was on time
       $scope.getColor = function(due_date) {

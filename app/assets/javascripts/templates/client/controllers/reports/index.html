@@ -2,42 +2,42 @@
   <h2 translate="Reports" translate-default="Reports"></h2>
 
   <div class="panel-group" id="accordion">
-            <div class="panel panel-default" ng-repeat="(key, value) in reports">
+            <div class="panel panel-default" ng-repeat="(key, report_group) in reports">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{key}}">{{users[$index].name}}
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{key}}">{{report_group[0].name}}
                         </a>
                     </h4>
                 </div>
                 <div id="collapse{{key}}" class="panel-collapse collapse">
                     <div class="panel-body">
-                    	<li ng-repeat="p in value">
-                    		<!-- ui-sref="app.posts.show({ id: p.id })" -->
-	           			 <a data-toggle="modal" data-target="#modal{{p.id}}">Report for {{p.created_at | date:'longDate'}}</a>
+                    	<li ng-repeat="report in report_group">
+                    		<!-- ui-sref="app.posts.show({ id: report.id })" -->
+	           			 <a data-toggle="modal" data-target="#modal{{report.id}}">Report for {{report.due_date | date:'longDate'}}</a>
 
-						<div class="modal fade" id="modal{{p.id}}" tabindex="-1" role="dialog" aria-labelledby="label{{p.id}}" aria-hidden="true">
+						<div class="modal fade" id="modal{{report.id}}" tabindex="-1" role="dialog" aria-labelledby="label{{report.id}}" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						          <span aria-hidden="true">&times;</span>
 						        </button>
-						        <h5 class="modal-title" id="label{{p.id}}">Report for {{p.created_at | date:'longDate'}}</h5>
+						        <h5 class="modal-title" id="label{{report.id}}">Report for {{report.due_date | date:'longDate'}}</h5>
 							    </div>
 							  	<div class="modal-body">
 							  		<h6 style="font-weight:bold;">Meetings Attended</h6>
-							  			<p>{{p.meetings_attended}}</p>
+							  			<p>{{report.meetings_attended}}</p>
 							  	    <h6 style="font-weight:bold;">Current Projects</h6>
-							  			<p>{{p.current_projects}}</p>
+							  			<p>{{report.current_projects}}</p>
 							  	    <h6 style="font-weight:bold;">Expenditures</h6>
-							  			<p>{{p.expenditures}}</p>
+							  			<p>{{report.expenditures}}</p>
 							  	    <h6 style="font-weight:bold;">Other Information</h6>
-							  			<p>{{p.other}}</p>
+							  			<p>{{report.other}}</p>
 
 								</div>
 								<div class="modal-footer">
-									 <a data-dismiss="modal" ui-sref="app.reports.edit({ id: p.id })" class="btn btn-primary"
-     								ng-if="authSvc.currentUserIs(p.user_id)" translate="Edit Report"></a>
+									 <a data-dismiss="modal" ui-sref="app.reports.edit({ id: report.id })" class="btn btn-primary"
+     								ng-if="authSvc.currentUserIs(report.user_id)" translate="Edit Report"></a>
 								</div>
 						    </div>
 						  </div>
