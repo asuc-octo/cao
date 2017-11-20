@@ -35,10 +35,10 @@
 							  			<p>{{report.other}}</p>
 
 								</div>
-								<div class="modal-footer">
-									 <a data-dismiss="modal" ui-sref="app.reports.edit({ id: report.id })" class="btn btn-primary"
-     								ng-if="authSvc.currentUserIs(report.user_id)" translate="Edit Report"></a>
-								</div>
+                                <div class="modal-footer">
+    									 <a data-dismiss="modal" ng-click="close(report.id)" class="btn btn-primary"
+         								ng-if="authSvc.currentUserIs(report.user_id)" translate="Edit Report"></a>
+    							</div>
 						    </div>
 						  </div>
 						</div>
