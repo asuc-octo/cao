@@ -1,8 +1,8 @@
-angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc'])
+angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'AttachmentLibrarySvc'])
   .controller('ReportsCtrl', [
-    '$scope', '$state', 'AuthSvc', 'I18n', 'Flash', 'Report', 'AttachmentLibrarySvc',
+    '$scope', '$state', 'AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'AttachmentLibrarySvc',
     'initialData',
-    function ($scope, $state, AuthSvc, I18n, Flash, Report, AttachmentLibrarySvc,
+    function ($scope, $state, AuthSvc, I18n, Flash, Report, User, AttachmentLibrarySvc,
               initialData) {
 
       /**
@@ -10,6 +10,31 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'Attachment
        */
       $scope.actionIndex = function () {
         var reportsQuery = null;
+        var userQuery = null;
+
+        var fetchUser = _.debounce(function () {
+          $scope.pleaseWaitSvc.request();
+
+          userQuery = User.query();
+          
+
+          userQuery.$promise.then(function (response) {
+            $scope.users = response;
+            $scope.users = _.sortBy($scope.users, "id")
+
+          }, function (failureResponse) {
+            // Do something on failure
+          }).finally(function () {
+            $scope.pleaseWaitSvc.release();
+          });
+        }, 400);
+
+        if (userQuery) {
+          userQuery.$cancelRequest();
+          userQuery = null;
+        }
+
+        fetchUser();
 
         // Debounce the reports retrieval.
         // This code is merely illustrative. In the case of this particular
@@ -18,9 +43,20 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'Attachment
           $scope.pleaseWaitSvc.request();
 
           reportsQuery = Report.query();
+          
 
           reportsQuery.$promise.then(function (response) {
             $scope.reports = response;
+            $scope.reports = _.groupBy(_.sortBy($scope.reports, "due_date"), "user_id");
+
+            for (var key in $scope.reports) {
+              var username = $scope.users[key].name;
+              for (var v in $scope.reports[key]) {
+                v.name = username;
+              }
+              key = username;
+            }
+
           }, function (failureResponse) {
             // Do something on failure
           }).finally(function () {
@@ -37,6 +73,8 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'Attachment
         }
 
         fetchReports();
+
+        
       };
 
       /**
