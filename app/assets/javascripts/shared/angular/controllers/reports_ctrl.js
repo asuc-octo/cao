@@ -16,11 +16,12 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'At
           $scope.pleaseWaitSvc.request();
 
           userQuery = User.query();
-          
+
 
           userQuery.$promise.then(function (response) {
             $scope.users = response;
             $scope.users = _.sortBy($scope.users, "id")
+            console.log($scope.users);
 
           }, function (failureResponse) {
             // Do something on failure
@@ -43,19 +44,12 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'At
           $scope.pleaseWaitSvc.request();
 
           reportsQuery = Report.query();
-          
+
 
           reportsQuery.$promise.then(function (response) {
             $scope.reports = response;
             $scope.reports = _.groupBy(_.sortBy($scope.reports, "due_date"), "user_id");
-
-            for (var key in $scope.reports) {
-              var username = $scope.users[key].name;
-              for (var v in $scope.reports[key]) {
-                v.name = username;
-              }
-              key = username;
-            }
+            console.log($scope.reports);
 
           }, function (failureResponse) {
             // Do something on failure
@@ -74,7 +68,7 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'At
 
         fetchReports();
 
-        
+
       };
 
       /**

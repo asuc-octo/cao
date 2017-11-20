@@ -8,8 +8,8 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
         var USER_ROLE_SEARCH_OPTIONS = [
             { label: 'Admin', value: '1'},
             { label: 'Executive', value: '2'},
-            { label: 'CAO', value: '3'},
-            { label: 'Senator', value: '4'}
+            { label: 'Senator', value: '3'},
+            { label: 'CAO', value: '4'}
         ];
 
         /**
@@ -27,8 +27,8 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
         var USER_ROLE_CREATION_OPTIONS = [
             { label: 'Admin', value: 'admin'},
             { label: 'Executive', value: 'executive'},
-            { label: 'CAO', value: 'cao'},
-            { label: 'Senator', value: 'senator'}
+            { label: 'Senator', value: 'senator'},
+            { label: 'CAO', value: 'cao'}
         ];
 
         /**

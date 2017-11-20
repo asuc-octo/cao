@@ -23,11 +23,17 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
                 return '<a href="' + reportUrl + '">' + data + '</a>';
               }
             },
+            { data: 'name'},
             { data: 'meetings_attended' },
             { data: 'current_projects' },
             { data: 'expenditures' },
             { data: 'other' },
             { data: 'created_at',
+              render: function (data, type, row, meta) {
+                return moment(data).format('lll');
+              }
+            },
+            { data: 'due_date',
               render: function (data, type, row, meta) {
                 return moment(data).format('lll');
               }
