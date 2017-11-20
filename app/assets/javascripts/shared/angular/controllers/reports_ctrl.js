@@ -126,6 +126,7 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'At
         AttachmentLibrarySvc.setVisible(true);
 
         $scope.report = initialData;
+        
       };
 
       /**
@@ -134,6 +135,7 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'At
        * `reportErrors` scope variable with these errors.
        */
       $scope.actionUpdate = function () {
+
         $scope.pleaseWaitSvc.request();
 
         $scope.report.$update(function (response) {

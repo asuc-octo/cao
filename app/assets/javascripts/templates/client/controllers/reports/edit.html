@@ -5,10 +5,28 @@
     <span translate="Edit"></span>
   </h2>
 
-  <div ng-include="'client/controllers/reports/_form.html'">
+  <div class="form-group">
+    <label for="textArea" class="col-lg-2 control-label">Meetings Attended</label>
+    <div class="col-lg-10">
+      <textarea class="form-control" rows="3" id="textArea" required="true" ng-model="report.meetings_attended"></textarea>
+    </div>
+    <label for="textArea" class="col-lg-2 control-label">Current Projects</label>
+    <div class="col-lg-10">
+      <textarea class="form-control" rows="3" id="textArea" required="true" ng-model="report.current_projects"></textarea>
+    </div>
+    <label for="textArea" class="col-lg-2 control-label">Expenditures</label>
+    <div class="col-lg-10">
+      <textarea class="form-control" rows="3" id="textArea" required="true" ng-model="report.expenditures"></textarea>
+    </div>
+    <label for="textArea" class="col-lg-2 control-label">Other</label>
+    <div class="col-lg-10">
+      <textarea class="form-control" rows="3" id="textArea" required="true" ng-model="report.other"></textarea>
+    </div>
   </div>
-
-  <h3 translate="Image"></h3>
-
-
+  <div class="form-group">
+    <div class="col-lg-10 col-lg-offset-2">
+      <button type="reset" class="btn btn-default">Cancel</button>
+      <button type="submit" class="btn btn-primary" ng-Click="actionUpdate()">Submit</button>
+    </div>
+  </div>
 </div>
