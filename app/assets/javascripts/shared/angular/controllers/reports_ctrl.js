@@ -126,7 +126,19 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'At
         AttachmentLibrarySvc.setVisible(true);
 
         $scope.report = initialData;
-        
+        datesQuer = Report.new();
+        //so I can try just doing report here, but it gives me some other insteresting due date options. msut be a better way of getting the options.
+        datesQuer.$promise.then(function (response) {
+          $scope.due_date_options = response;
+          console.log($scope.due_date_options);
+        });
+        dateOptions = {
+            weekday: "long", year: "numeric", month: "long", day: "numeric"
+        };
+
+        $scope.formatDate = function(date) {
+            return (new Date(date)).toLocaleDateString("en-us", dateOptions);
+        }
       };
 
       /**
