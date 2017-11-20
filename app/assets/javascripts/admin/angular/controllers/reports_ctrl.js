@@ -45,7 +45,7 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
             data.filters = $scope.queryBuilderFilters;
           },
           stateLoadParams: function (settings, data) {
-            $scope.queryBuilderFilters = data.filters;
+            $scope.queryBuilderFilters = data.filters || [];
           }
         };
 
@@ -149,10 +149,11 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
             { name: 'id', label: 'ID', type: 'text' },
             { name: 'created_at', label: 'Created At', type: 'date' }
           ],
-          initialColumns: ['meetings_attended', 'current_projects', 'expenditures', 'other', 'id'],
+          initialColumns: ['current_projects', 'id'],
           onSubmit: function () {
             $scope.dataTableInstance.ajax.reload();
           }
         };
+        $scope.queryBuilderFilters = [];
       };
     }]);
