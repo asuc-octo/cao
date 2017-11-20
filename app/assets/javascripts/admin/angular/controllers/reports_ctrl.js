@@ -137,18 +137,20 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
 
         // For showing expanded row information
         $scope.dataTableExpandedRowInfo = function () {
-          return 'Dummy expanded row text';
+          return 'If possible, put report data here';
         };
 
         $scope.queryBuilderOptions = {
           columns: [
             { name: 'meetings_attended', label: 'Meetings Attended', type: 'text' },
+            { name: 'name', label: 'Name', type: 'text' },
             { name: 'current_projects', label: 'Current Projects', type: 'text' },
             { name: 'expenditures', label: 'Expenditures', type: 'text' },
             { name: 'other', label: 'Other', type: 'text' },
             // See `query-builder` for why 'id' column has type 'text'
             { name: 'id', label: 'ID', type: 'text' },
-            { name: 'created_at', label: 'Created At', type: 'date' }
+            { name: 'created_at', label: 'Created At', type: 'date' },
+            { name: 'due_date', label: 'Due Date', type: 'date' }
           ],
           initialColumns: ['current_projects', 'id'],
           onSubmit: function () {
