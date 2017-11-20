@@ -56,6 +56,7 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
         // For operations on a single row
         $scope.dataTableRowOps = {
           edit: {
+            //TODO: THIS NEEDS TO BE DRASTICALLY CHANGED TO ALLOW ADMINS TO ACTUALLY EDIT REPORTS
             icon: 'glyphicon-pencil',
             link: function (rowId) {
               return I18n.l('/:locale/reports/' + rowId + '/edit');
