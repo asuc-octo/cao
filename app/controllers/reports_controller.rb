@@ -53,7 +53,6 @@ class ReportsController < ApplicationController
 
 	def edit
 	  authorize @report
-
 	  respond_with @report
 	end
 
