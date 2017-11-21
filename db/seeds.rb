@@ -19,7 +19,7 @@ hahe.add_role "executive"
 arakeman.add_role "executive"
 lionming.add_role "senator"
 andrewchenk.add_role "senator"
-evancui.add_role "cao"
+evancui.add_role "appointed"
 
 # Create a bunch of due dates
 
