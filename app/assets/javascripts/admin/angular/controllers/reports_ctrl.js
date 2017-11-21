@@ -23,7 +23,7 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
                 return '<a href="' + reportUrl + '">' + data + '</a>';
               }
             },
-            { data: 'name'},
+            { data: 'name', searchable: false, orderable: false},
             { data: 'meetings_attended' },
             { data: 'current_projects' },
             { data: 'expenditures' },
@@ -33,7 +33,7 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
                 return moment(data).format('lll');
               }
             },
-            { data: 'due_date',
+            { data: 'due_date', searchable: false, orderable: false,
               render: function (data, type, row, meta) {
                 return moment(data).format('lll');
               }
