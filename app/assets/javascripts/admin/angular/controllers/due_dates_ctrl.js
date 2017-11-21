@@ -9,7 +9,7 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
             { label: 'Admin', value: '1'},
             { label: 'Executive', value: '2'},
             { label: 'Senator', value: '3'},
-            { label: 'CAO', value: '4'}
+            { label: 'Chief Appointed Official', value: '4'}
         ];
 
         /**
@@ -28,7 +28,7 @@ angular.module('DueDatesCtrl', ['I18n', 'Flash', 'DueDate'])
             { label: 'Admin', value: 'admin'},
             { label: 'Executive', value: 'executive'},
             { label: 'Senator', value: 'senator'},
-            { label: 'CAO', value: 'cao'}
+            { label: 'Chief Appointed Official', value: 'appointed'}
         ];
 
         /**
