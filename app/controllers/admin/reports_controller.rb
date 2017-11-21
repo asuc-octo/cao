@@ -10,7 +10,7 @@ class Admin::ReportsController < Admin::ApplicationController
 
     reports_filter = QueryBuilder.new(Report, params[:filters])
 
-    @reports_adapter = DataTableAdapter.new(Report, params, reports_filter.query)
+    @reports_adapter = DataTableAdapter.new(Report, params, reports_filter.query, ["user_id, due_date_id"])
 
     respond_with @reports_adapter
   end
