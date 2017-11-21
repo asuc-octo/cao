@@ -13,9 +13,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="due_date in user.due_dates" ng-class="getColor(due_date)">
-                    <th class="col-md-3">{{ due_date.deadline }}</th>
-                    <th class="col-md-3">{{ due_date.punctuality }}</th>
+                <tr ng-repeat="due_date in user.due_dates | orderBy: 'deadline'" ng-class="getColor(due_date)">
+                    <th class="col-md-3" ng-bind="formatDate(due_date)"></th>
+                    <th class="col-md-3" ng-bind="getPunctuality(due_date)"></th>
                     <th class="col-md-3">{{ due_date.stipend_reduction }}</th>
                 </tr>
             </tbody>

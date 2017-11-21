@@ -23,11 +23,17 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
                 return '<a href="' + reportUrl + '">' + data + '</a>';
               }
             },
+            { data: 'name', searchable: false, orderable: false},
             { data: 'meetings_attended' },
             { data: 'current_projects' },
             { data: 'expenditures' },
             { data: 'other' },
             { data: 'created_at',
+              render: function (data, type, row, meta) {
+                return moment(data).format('lll');
+              }
+            },
+            { data: 'due_date', searchable: false, orderable: false,
               render: function (data, type, row, meta) {
                 return moment(data).format('lll');
               }
@@ -39,7 +45,7 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
             data.filters = $scope.queryBuilderFilters;
           },
           stateLoadParams: function (settings, data) {
-            $scope.queryBuilderFilters = data.filters;
+            $scope.queryBuilderFilters = data.filters || [];
           }
         };
 
@@ -50,6 +56,7 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
         // For operations on a single row
         $scope.dataTableRowOps = {
           edit: {
+            //TODO: THIS NEEDS TO BE DRASTICALLY CHANGED TO ALLOW ADMINS TO ACTUALLY EDIT REPORTS
             icon: 'glyphicon-pencil',
             link: function (rowId) {
               return I18n.l('/:locale/reports/' + rowId + '/edit');
@@ -130,23 +137,26 @@ angular.module('ReportsCtrl', ['I18n', 'Flash', 'Report'])
 
         // For showing expanded row information
         $scope.dataTableExpandedRowInfo = function () {
-          return 'Dummy expanded row text';
+          return 'If possible, put report data here';
         };
 
         $scope.queryBuilderOptions = {
           columns: [
             { name: 'meetings_attended', label: 'Meetings Attended', type: 'text' },
+            { name: 'name', label: 'Name', type: 'text' },
             { name: 'current_projects', label: 'Current Projects', type: 'text' },
             { name: 'expenditures', label: 'Expenditures', type: 'text' },
             { name: 'other', label: 'Other', type: 'text' },
             // See `query-builder` for why 'id' column has type 'text'
             { name: 'id', label: 'ID', type: 'text' },
-            { name: 'created_at', label: 'Created At', type: 'date' }
+            { name: 'created_at', label: 'Created At', type: 'date' },
+            { name: 'due_date', label: 'Due Date', type: 'date' }
           ],
-          initialColumns: ['meetings_attended', 'current_projects', 'expenditures', 'other', 'id'],
+          initialColumns: ['current_projects', 'id'],
           onSubmit: function () {
             $scope.dataTableInstance.ajax.reload();
           }
         };
+        $scope.queryBuilderFilters = [];
       };
     }]);
