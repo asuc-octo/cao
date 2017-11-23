@@ -6,18 +6,17 @@ angular.module('PunctualityCtrl', ['I18n', 'Flash', 'User'])
        * The 'index' action.
        */
       $scope.actionIndex = function () {
-          var usersQuery = null;
+          $scope.view_option = 'by user';
 
           var fetchUsers = function () {
             $scope.users = User.query();
+            $scope.dates = _.groupBy(_.sortBy($scope.users, "due_date"), "user_id");
             console.log($scope.users);
           };
 
-          now = new Date();
-          millisecondsInADay = 8.64e+7;
-
           fetchUsers();
       };
+
       // Get data from the JSON and process it to make it easier for the view
       $scope.formatDate = function(due_date) {
           var dateOptions = {
