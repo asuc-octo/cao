@@ -48,8 +48,8 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'At
 
           reportsQuery.$promise.then(function (response) {
             $scope.reports = response;
-            $scope.reports = _.groupBy(_.sortBy($scope.reports, "due_date"), "user_id");
             console.log($scope.reports);
+            $scope.reports = _.groupBy(_.sortBy($scope.reports, "due_date"), "user_id");
 
           }, function (failureResponse) {
             // Do something on failure

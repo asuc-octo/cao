@@ -1,7 +1,26 @@
 <div ng-init="actionIndex()">
     <h2 translate="Punctuality"></h2>
-    <div class="list-group">
-      <a class="list-group-item" ng-repeat="user in users" ng-click="formatDates(user); showTable = !showTable">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#view-option">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="view-option">
+                <ul class="nav navbar-nav">
+                    <li ng-class="view_option == 'by user' ? 'active' : ''"><a href="#" ng-click="view_option = 'by user'">Group By User<span class="sr-only">(current)</span></a></li>
+                    <li ng-class="view_option == 'by date' ? 'active' : ''"><a href="#" ng-click="view_option = 'by date'">Group By Date<span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="list-group" ng-if="view_option == 'by user'">
+      <a class="list-group-item" ng-repeat="user in users" ng-if="user.name != 'Test'" ng-click="formatDates(user); showTable = !showTable">
         <h4 class="list-group-item-heading">{{user.role}} {{user.name}}</h4>
         <p class="list-group-item-text">Click to view punctuality</p>
         <table class="table table-striped table-hover " ng-show="showTable">
@@ -22,4 +41,5 @@
         </table>
       </a>
     </div>
+
 </div>
