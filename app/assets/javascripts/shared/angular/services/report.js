@@ -14,7 +14,7 @@ angular.module('Report', ['I18n', 'ArrayMetadataResponseAdapter'])
           query: ArrayMetadataResponseAdapter.adaptToArray(
             'items', 'metadata', {
               method: 'GET'
-            }),
+          }),
           edit: {
             method: 'GET',
             params: { memberAction: 'edit' }

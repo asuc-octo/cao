@@ -6,19 +6,25 @@ angular.module('PunctualityCtrl', ['I18n', 'Flash', 'User'])
        * The 'index' action.
        */
       $scope.actionIndex = function () {
-          var usersQuery = null;
+          $scope.view_option = 'by user';
 
-          var fetchUsers = function () {
-            $scope.users = User.query();
+          var fetchData = function () {
+            json_query = User.query();
+            console.log(json_query);
+            json_query.$promise.then(function (response) {
+                $scope.users = response.users;
+                $scope.users = _.sortBy($scope.users, "id");
+                $scope.roles = response.roles;
+                $scope.roles = _.sortBy($scope.roles, "name");
+            });
             console.log($scope.users);
+            console.log($scope.dates);
           };
 
-          now = new Date();
-          millisecondsInADay = 8.64e+7;
-
-          fetchUsers();
+          fetchData();
       };
-      // Get data from the JSON and process it to make it easier for the view
+
+      // Make dates look good to humans
       $scope.formatDate = function(due_date) {
           var dateOptions = {
               weekday: "long", year: "numeric", month: "long", day: "numeric"
@@ -28,6 +34,7 @@ angular.module('PunctualityCtrl', ['I18n', 'Flash', 'User'])
           return deadline.toLocaleDateString("en-us", dateOptions);
       };
 
+      // Generate a punctuality flag based on JSON data
       $scope.getPunctuality = function(due_date) {
           // Make the "Punctuality" column
           var punctuality = due_date.days_early;
@@ -45,6 +52,7 @@ angular.module('PunctualityCtrl', ['I18n', 'Flash', 'User'])
           };
           return punctuality
       };
+
       // Decide the color of the row based on whether the user has turned in the report and whether it was on time
       $scope.getColor = function(due_date) {
 
