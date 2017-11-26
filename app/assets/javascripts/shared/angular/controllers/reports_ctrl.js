@@ -19,7 +19,7 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'At
 
 
           userQuery.$promise.then(function (response) {
-            $scope.users = response;
+            $scope.users = response.users;
             $scope.users = _.sortBy($scope.users, "id")
             console.log($scope.users);
 
