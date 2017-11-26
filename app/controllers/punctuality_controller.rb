@@ -3,6 +3,7 @@ class PunctualityController < ApplicationController
 
     def index
         @users = User.all
+        @roles = Role.all
         respond_with @users
     end
 end

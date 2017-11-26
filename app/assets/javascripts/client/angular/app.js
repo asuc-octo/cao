@@ -17,6 +17,7 @@ var app = angular.module('App', [
   'AuthSvc',
   'Post',
   'Report',
+  'User',
 
   // Controllers
   'AppCtrl',
@@ -37,6 +38,7 @@ var app = angular.module('App', [
   // Filters
   'StringFilters',
   'DateFilters',
+  'Capitalize',
 
   // Modules
   'I18n',
