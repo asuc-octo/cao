@@ -1,6 +1,6 @@
 json.users @users do |user|
     json.(user, :id, :name, :email)
-    json.role user.roles.first.name == "cao" ? user.roles.first.name.upcase : user.roles.first.name.capitalize
+    json.role user.roles.first.name.capitalize
     json.stipend user.stipend
     json.due_dates user.roles.collect{|role| role.due_dates}.flatten do |due_date|
         json.(due_date, :id, :role_id, :deadline)

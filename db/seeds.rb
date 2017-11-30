@@ -7,6 +7,10 @@ admin = User.new name: 'Test', email: 'admin@test.com', password: 'password'
 admin.grant :admin
 admin.save!
 
+[:executive, :senator, :appointed].each do |role|
+  Role.find_or_create_by(name: role)
+end
+
 # Create a bunch of other users
 hahe = User.create! name: "Hannah He", email: "hahe@berkeley.edu", password: "password", stipend: 1000
 arakeman = User.create! name: "Alex Rakeman", email: "arakeman@berkeley.edu", password: "password", stipend: 1000
@@ -57,4 +61,3 @@ Report.create! user_id: lionming.id, due_date_id: dueDate10.id, meetings_attende
 Report.create! user_id: andrewchenk.id, due_date_id: dueDate3.id, meetings_attended: 'hi.'
 Report.create! user_id: andrewchenk.id, due_date_id: dueDate4.id, meetings_attended: 'hi2.'
 Report.create! user_id: andrewchenk.id, due_date_id: dueDate5.id, meetings_attended: 'hi3.'
-
