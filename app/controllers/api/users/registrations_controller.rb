@@ -4,13 +4,14 @@ module Api
     class RegistrationsController < Devise::RegistrationsController
       respond_to :json
 
-      def create
-        if AppSettings.get(:security, :force_sign_up_via_admin)
-          render_op_error 'api.users', :sign_up_disabled
-        else
-          super
-        end
-      end
+# We don't want to create
+#      def create
+#        if AppSettings.get(:security, :force_sign_up_via_admin)
+#          render_op_error 'api.users', :sign_up_disabled
+#        else
+#          super
+#        end
+#      end
 
       # update needs to be overridden
       # TODO Override the 'update' action
