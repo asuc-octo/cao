@@ -1,52 +1,201 @@
 <div ng-init="actionIndex()">
   <h2 translate="Reports" translate-default="Reports"></h2>
 
-  <div class="panel-group" id="accordion">
-            <div class="panel panel-default" ng-repeat="(key, report_group) in reports">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{key}}">{{report_group[0].name}}
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapse{{key}}" class="panel-collapse collapse">
-                    <div class="panel-body">
-                    	<li ng-repeat="report in report_group">
-                    		<!-- ui-sref="app.posts.show({ id: report.id })" -->
-	           			 <a data-toggle="modal" data-target="#modal{{report.id}}">Report for {{report.due_date | date:'longDate'}}</a>
 
-						<div class="modal fade" id="modal{{report.id}}" tabindex="-1" role="dialog" aria-labelledby="label{{report.id}}" aria-hidden="true">
-						  <div class="modal-dialog" role="document">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						          <span aria-hidden="true">&times;</span>
-						        </button>
-						        <h5 class="modal-title" id="label{{report.id}}">Report for {{report.due_date | date:'longDate'}}</h5>
-							    </div>
-							  	<div class="modal-body">
-							  		<h6 style="font-weight:bold;">Meetings Attended</h6>
-							  			<p>{{report.meetings_attended}}</p>
-							  	    <h6 style="font-weight:bold;">Current Projects</h6>
-							  			<p>{{report.current_projects}}</p>
-							  	    <h6 style="font-weight:bold;">Expenditures</h6>
-							  			<p>{{report.expenditures}}</p>
-							  	    <h6 style="font-weight:bold;">Other Information</h6>
-							  			<p>{{report.other}}</p>
+   <!--  <ul class="nav nav-tabs">
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#home">Home</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link active" data-toggle="tab" href="#profile">Profile</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link disabled" href="#">Disabled</a>
+	  </li>
+	  <li class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+	    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
+	      <a class="dropdown-item" href="#">Action</a>
+	      <a class="dropdown-item" href="#">Another action</a>
+	      <a class="dropdown-item" href="#">Something else here</a>
+	      <div class="dropdown-divider"></div>
+	      <a class="dropdown-item" href="#">Separated link</a>
+	    </div>
+	  </li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+	  <div class="tab-pane fade in" id="home">
+	    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+	  </div>
+	  <div class="tab-pane fade active show" id="profile">
+	    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+	  </div>
+	  <div class="tab-pane fade" id="dropdown1">
+	    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+	  </div>
+	  <div class="tab-pane fade" id="dropdown2">
+	    <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+	  </div>
+		</div>
+		 -->
 
-								</div>
-                                <div class="modal-footer">
-    									 <a data-dismiss="modal" ng-click="close(report.id)" class="btn btn-primary"
-         								ng-if="authSvc.currentUserIs(report.user_id)" translate="Edit Report"></a>
-    							</div>
-						    </div>
-						  </div>
-						</div>
-					    </li>
-		        	</div>
-                </div>
-            </div>
-    	</div>
+  
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-name" role="tabpanel" aria-labelledby="nav-name-tab">
+      
+    </div>
+    <div class="tab-pane fade" id="nav-date" role="tabpanel" aria-labelledby="nav-date-tab">...</div>
+  </div>
+  
+<br>
 
+  <div id="exTab2" class="container"> 
+    <ul class="nav nav-tabs">
+      <li class="active">
+            <a href="#name" data-toggle="tab">Sort By Name</a>
+      </li>
+      <li>
+        <a href="#date" data-toggle="tab">Sort By Date</a>
+      </li>
+    </ul>
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="name">
+        	  <br>
+
+          <div ng-repeat="(k, value) in reports">
+          		<!-- <br> -->
+              	<h4>{{k | capitalize}}</h4>
+
+              	<div class="panel panel-default">
+
+
+
+			          <div class="panel-group" id="accordion">
+			            <div class="panel panel-default" ng-repeat="(key, report_group) in value">
+			                <div class="panel-heading">
+			                    <h4 class="panel-title">
+			                      <!-- {{report_group[0].name}} -->
+			                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{report_group[0].user_id}}">{{report_group[0].name}}
+			                        </a>
+			                    </h4>
+			                </div>
+			                <div id="collapse{{report_group[0].user_id}}" class="panel-collapse collapse">
+			                    <div class="panel-body">
+			                      <li ng-repeat="report in report_group">
+			                        <!-- ui-sref="app.posts.show({ id: report.id })" -->
+			                        <!-- Report for {{report.due_date | date:'longDate'}} -->
+			                   <a data-toggle="modal" data-target="#modal{{report.id}}">Report for {{report.due_date | date:'longDate'}}</a>
+
+			            <div class="modal fade" id="modal{{report.id}}" tabindex="-1" role="dialog" aria-labelledby="label{{report.id}}" aria-hidden="true">
+			              <div class="modal-dialog" role="document">
+			                <div class="modal-content">
+			                  <div class="modal-header">
+			                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                      <span aria-hidden="true">&times;</span>
+			                    </button>
+			                    <h5 class="modal-title" id="label{{report.id}}">Report for {{report.due_date | date:'longDate'}}</h5>
+			                  </div>
+			                  <div class="modal-body">
+			                    <h6 style="font-weight:bold;">Meetings Attended</h6>
+			                      <p>{{report.meetings_attended}}</p>
+			                      <h6 style="font-weight:bold;">Current Projects</h6>
+			                      <p>{{report.current_projects}}</p>
+			                      <h6 style="font-weight:bold;">Expenditures</h6>
+			                      <p>{{report.expenditures}}</p>
+			                      <h6 style="font-weight:bold;">Other Information</h6>
+			                      <p>{{report.other}}</p>
+
+			                </div>
+			                                <div class="modal-footer">
+			                       <a data-dismiss="modal" ng-click="close(report.id)" class="btn btn-primary"
+			                        ng-if="authSvc.currentUserIs(report.user_id)" translate="Edit Report"></a>
+			                  </div>
+			                </div>
+			              </div>
+			            </div>
+
+			              </li>
+			              </div>
+			                </div>
+			            </div>
+			      </div>
+
+			     </div>
+			 </div>
+          
+
+        </div>
+          <div class="tab-pane" id="date">
+          	<br>
+              <div ng-repeat="(k, value) in dateReports">
+              	<!-- <br> -->
+              	<h4>{{k | capitalize}}</h4>
+
+              	<div class="panel panel-default">
+              		<!-- <br> -->
+              		<!-- {{k | date: 'fullDate'}} -->
+
+		            <div class="panel-group" id="accordion{{k}}">
+		            <div class="panel panel-default" ng-repeat="(key, report_group) in value">
+		                <div class="panel-heading">
+		                    <h4 class="panel-title">
+		                      <!-- {{report_group[0].name}} -->
+		                      <!-- {{key | date:'fullDate'}} -->
+		                        <a data-toggle="collapse" data-parent="#accordion{{k}}" href="#collapse{{k}}{{key | date: 'ddMMy'}}">{{key | date:'fullDate'}}
+		                        </a>
+		                    </h4>
+		                </div>
+		                <div id="collapse{{k}}{{key | date: 'ddMMy'}}" class="panel-collapse collapse">
+		                    <div class="panel-body">
+		                      <li ng-repeat="report in report_group">
+		                        <!-- ui-sref="app.posts.show({ id: report.id })" -->
+		                        <!-- Report for {{report.due_date | date:'longDate'}} -->
+		                        <!-- Report for {{report_group[0].name}} -->
+		                   <a data-toggle="modal" data-target="#mod{{report.id}}">Report for {{report_group[$index].name}}</a>
+
+		            <div class="modal fade" id="mod{{report.id}}" tabindex="-1" role="dialog" aria-labelledby="lab{{report.id}}" aria-hidden="true">
+		              <div class="modal-dialog" role="document">
+		                <div class="modal-content">
+		                  <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                      <span aria-hidden="true">&times;</span>
+		                    </button>
+		                    <h5 class="modal-title" id="lab{{report.id}}">Report for {{report_group[$index].name}}</h5>
+		                  </div>
+		                  <div class="modal-body">
+		                    <h6 style="font-weight:bold;">Meetings Attended</h6>
+		                      <p>{{report.meetings_attended}}</p>
+		                      <h6 style="font-weight:bold;">Current Projects</h6>
+		                      <p>{{report.current_projects}}</p>
+		                      <h6 style="font-weight:bold;">Expenditures</h6>
+		                      <p>{{report.expenditures}}</p>
+		                      <h6 style="font-weight:bold;">Other Information</h6>
+		                      <p>{{report.other}}</p>
+
+		                </div>
+		                                <div class="modal-footer">
+		                       <a data-dismiss="modal" ng-click="close(report.id)" class="btn btn-primary"
+		                        ng-if="authSvc.currentUserIs(report.user_id)" translate="Edit Report"></a>
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+
+		              </li>
+		              </div>
+		                </div>
+            		</div>
+      			</div>
+      		</div>
+      	</div>
+        </div>
+
+
+      </div>
+    </div>
+    <br>
   <a ui-sref="app.reports.new" class="btn btn-primary" translate="New Report"></a>
+
 </div>

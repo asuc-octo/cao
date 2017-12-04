@@ -12,30 +12,20 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'At
         var reportsQuery = null;
         var userQuery = null;
 
-        var fetchUser = _.debounce(function () {
-          $scope.pleaseWaitSvc.request();
-
-          userQuery = User.query();
-
-
-          userQuery.$promise.then(function (response) {
-            $scope.users = response.users;
-            $scope.users = _.sortBy($scope.users, "id")
+         var fetchData = function () {
+            json_query = User.query();
+            console.log(json_query);
+            json_query.$promise.then(function (response) {
+                $scope.users = response.users;
+                $scope.users = _.sortBy($scope.users, "id");
+                $scope.roles = response.roles;
+                $scope.roles = _.sortBy($scope.roles, "name");
+            });
             console.log($scope.users);
+            console.log($scope.dates);
+          };
 
-          }, function (failureResponse) {
-            // Do something on failure
-          }).finally(function () {
-            $scope.pleaseWaitSvc.release();
-          });
-        }, 400);
-
-        if (userQuery) {
-          userQuery.$cancelRequest();
-          userQuery = null;
-        };
-
-        fetchUser();
+          fetchData();
 
         // Debounce the reports retrieval.
         // This code is merely illustrative. In the case of this particular
@@ -49,7 +39,24 @@ angular.module('ReportsCtrl', ['AuthSvc', 'I18n', 'Flash', 'Report', 'User', 'At
           reportsQuery.$promise.then(function (response) {
             $scope.reports = response;
             console.log($scope.reports);
-            $scope.reports = _.groupBy(_.sortBy($scope.reports, "due_date"), "user_id");
+            $scope.reports = _.groupBy(_.sortBy($scope.reports, "role"), "role");
+
+            for (var key in $scope.reports) {
+              $scope.reports[key] = _.groupBy(_.sortBy($scope.reports[key], "name"), "name");
+              for (var k in $scope.reports[key]) {
+                $scope.reports[key][k] = _.sortBy($scope.reports[key][k], "due_date");
+              }
+            }
+            
+            $scope.dateReports = response;
+            $scope.dateReports = _.groupBy(_.sortBy($scope.dateReports, "role"), "role");
+
+            for (var key in $scope.dateReports) {
+              $scope.dateReports[key] = _.groupBy($scope.dateReports[key], "due_date");
+              for (var k in $scope.dateReports[key]) {
+                $scope.dateReports[key][k] = _.sortBy($scope.dateReports[key][k], "name");
+              }
+            }
 
           }, function (failureResponse) {
             // Do something on failure
