@@ -4,7 +4,9 @@ module Api
     class RegistrationsController < Devise::RegistrationsController
       respond_to :json
 
+# We don't want to create
       def create
+      #  AppSettings.set(:security, :force_sign_up_via_admin)
         if AppSettings.get(:security, :force_sign_up_via_admin)
           render_op_error 'api.users', :sign_up_disabled
         else
